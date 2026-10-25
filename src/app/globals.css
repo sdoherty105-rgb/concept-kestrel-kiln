@@ -1668,6 +1668,22 @@ textarea.input {
     radial-gradient(50% 80% at 0% 0%, rgba(226, 189, 124, 0.5), transparent 70%), var(--page);
   border-bottom: 1px solid var(--line);
 }
+.page-hero-stack {
+  display: flex;
+  flex-direction: column;
+}
+.page-hero-stack .eyebrow {
+  order: 1;
+}
+.page-hero-stack h1 {
+  order: 2;
+}
+.page-hero-stack .lede {
+  order: 3;
+}
+.page-hero-stack .cta-row {
+  order: 4;
+}
 .page-hero h1 {
   font-size: clamp(3rem, 10vw, 7.25rem);
   line-height: 0.92;

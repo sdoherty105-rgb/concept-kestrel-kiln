@@ -50,15 +50,15 @@ export default function MenuPage() {
   return (
     <>
       <section className="page-hero menu-page" aria-labelledby="menu-title">
-        <div className="wrap">
+        <div className="wrap page-hero-stack">
           <span className="eyebrow">Full menu</span>
-          <h1 id="menu-title">
-            The bake <em>list.</em>
-          </h1>
           <p className="lede">
             Everything from the kiln and the counter, with the time each bake comes out. Bakery items can be
             pre-ordered for pickup. Cafe items are made to order when you visit.
           </p>
+          <h1 id="menu-title">
+            The bake <em>list.</em>
+          </h1>
           <div className="cta-row" style={{ marginTop: 28 }}>
             <Link href="/#pre-order" className="btn">
               Go to pre-order
