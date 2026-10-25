@@ -26,6 +26,10 @@ for (const s of sizes) {
   for (const p of pages) {
     await page.goto(base + p.path, { waitUntil: "networkidle" });
     await page.evaluate(() => {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "/fonts/webfonts.css";
+      document.head.appendChild(link);
       document.documentElement.classList.add("fonts-display", "fonts-body");
     });
     await page.waitForSelector("html.fonts-body");

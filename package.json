@@ -5,7 +5,7 @@
   "description": "Kestrel & Kiln — a fictional artisan bakery concept by OFF/SHIFT Studio.",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "mkdir -p public/fonts && cp src/fonts/*.woff2 public/fonts/ && next build",
     "start": "next start",
     "lint": "tsc --noEmit",
     "test": "playwright test",
