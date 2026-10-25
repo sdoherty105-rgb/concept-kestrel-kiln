@@ -131,7 +131,7 @@
   }
 }
 
-/* Webfonts load on window.load (see layout.tsx). Without JavaScript they apply immediately. */
+/* Webfonts load after window.load + delay (see layout.tsx). Without JavaScript they apply immediately. */
 :root.fonts-display,
 :root:not(.js) {
   --font-display: "Fraunces", "Fraunces Fallback", Georgia, "Times New Roman", serif;
