@@ -37,6 +37,15 @@ for (const { path, h1 } of PAGES) {
       expect(robots).toMatch(/nofollow/);
     });
 
+    test("webfonts are self-hosted and applied after load", async ({ page }) => {
+      await page.goto(path, { waitUntil: "load" });
+      await page.waitForSelector("html.fonts");
+      await page.evaluate(() => document.fonts.ready);
+      const loaded = await page.evaluate(() => [...document.fonts].filter((f) => f.status === "loaded").map((f) => f.family));
+      expect(loaded.join(" ")).toMatch(/DM Sans/);
+      expect(loaded.join(" ")).toMatch(/Fraunces/);
+    });
+
     test("loads nothing from other origins (no trackers, no external fonts)", async ({ page }) => {
       const external: string[] = [];
       page.on("request", (r) => {

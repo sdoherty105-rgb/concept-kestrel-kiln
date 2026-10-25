@@ -10,7 +10,7 @@
       "numberOfRuns": 3,
       "settings": {
         "formFactor": "mobile",
-        "throttlingMethod": "devtools",
+        "throttlingMethod": "simulate",
         "skipAudits": [
           "is-crawlable"
         ],
@@ -22,37 +22,43 @@
         "categories:performance": [
           "error",
           {
-            "minScore": 0.9
+            "minScore": 0.9,
+            "aggregationMethod": "median"
           }
         ],
         "categories:accessibility": [
           "error",
           {
-            "minScore": 0.95
+            "minScore": 0.95,
+            "aggregationMethod": "median"
           }
         ],
         "categories:best-practices": [
           "error",
           {
-            "minScore": 0.95
+            "minScore": 0.95,
+            "aggregationMethod": "median"
           }
         ],
         "categories:seo": [
           "error",
           {
-            "minScore": 0.9
+            "minScore": 0.9,
+            "aggregationMethod": "median"
           }
         ],
         "largest-contentful-paint": [
           "error",
           {
-            "maxNumericValue": 2500
+            "maxNumericValue": 2300,
+            "aggregationMethod": "median"
           }
         ],
         "cumulative-layout-shift": [
           "error",
           {
-            "maxNumericValue": 0.1
+            "maxNumericValue": 0.1,
+            "aggregationMethod": "median"
           }
         ]
       }

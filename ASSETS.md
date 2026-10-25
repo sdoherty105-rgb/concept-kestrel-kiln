@@ -14,7 +14,7 @@ no photographs, stock images, faces, third-party logos, analytics or trackers.
 | Fraunces (display) | `src/fonts/Fraunces-opsz.woff2`, `src/fonts/Fraunces-italic.woff2` | The Fraunces Project Authors, https://github.com/undercasetype/Fraunces, via the `@fontsource-variable/fraunces` npm package. Weight and optical-size axes limited and glyphs subset to Latin with `scripts/subset-fonts.py`. | SIL Open Font License 1.1 (`src/fonts/OFL-Fraunces.txt`) |
 | DM Sans (body) | `src/fonts/DMSans.woff2` | Colophon Foundry and Indian Type Foundry, https://github.com/googlefonts/dm-fonts, via the `@fontsource-variable/dm-sans` npm package. Weight axis limited and glyphs subset to Latin with `scripts/subset-fonts.py`. | SIL Open Font License 1.1 (`src/fonts/OFL-DMSans.txt`) |
 
-Fonts are self-hosted through `next/font/local`. The site makes no request to Google Fonts or any other
+Fonts are self-hosted through `@font-face` rules in `src/app/globals.css`. The site makes no request to Google Fonts or any other
 third-party origin.
 
 ## Content

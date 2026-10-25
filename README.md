@@ -46,8 +46,7 @@ fails if any network request is made during the whole flow.
 ## Stack
 
 Next.js 16 (App Router, TypeScript), prerendered statically, deployable to Cloudflare Workers through
-`@opennextjs/cloudflare` (`wrangler.jsonc` worker name: `concept-kestrel-kiln`). Fonts are self-hosted through
-`next/font/local`. No external fonts, analytics or trackers. See `ASSETS.md` for the asset and licence record.
+`@opennextjs/cloudflare` (`wrangler.jsonc` worker name: `concept-kestrel-kiln`). Fonts are self-hosted (`@font-face` in `globals.css`, files in `src/fonts`). No external fonts, analytics or trackers. See `ASSETS.md` for the asset and licence record.
 
 ```
 npm ci
@@ -70,13 +69,24 @@ This repo deliberately has no deploy script. Nothing here is deployed, and no do
    viewports (every page renders, noindex everywhere, concept label, form never touches the network, JS-disabled
    rendering, keyboard, axe WCAG 2.2 AA).
 2. **OpenNext Cloudflare build**: confirms the Worker bundle builds. It does not deploy.
-3. **Lighthouse CI (mobile)**: `lighthouserc.json`, 3 runs per URL, asserting Performance >= 90, Accessibility >= 95,
-   Best Practices >= 95, SEO >= 90, LCP <= 2.5 s, CLS <= 0.1.
+3. **Lighthouse CI (mobile)**: `lighthouserc.json`, 3 runs per URL on Lighthouse's default simulated mobile
+   throttling, asserting the median of the runs: Performance >= 90, Accessibility >= 95, Best Practices >= 95,
+   SEO >= 90, LCP <= 2.3 s, CLS <= 0.1.
 
-Lighthouse notes: the run uses applied (DevTools) mobile throttling, because Lighthouse's simulated throttling
-mis-models a localhost HTTP/1.1 server. The `is-crawlable` audit is skipped on purpose: it fails by design
-because the site is `noindex`. Without that skip the SEO category reads about 63, and that is the only thing
-lost.
+Lighthouse notes: the `is-crawlable` audit is skipped on purpose: it fails by design because the site is
+`noindex`. Without that skip the SEO category reads about 63, and that is the only thing lost.
+
+### Loading budget (why LCP is low under simulated throttling)
+
+Simulated throttling charges the page for every byte requested before first paint, so the first load is kept lean:
+
+- The three webfont files (Fraunces roman, Fraunces italic, DM Sans) are requested after the `load` event, not
+  before first paint. First paint uses size-adjusted local fallback faces (Times New Roman / Arial metrics), so the
+  swap barely moves anything. Without JavaScript the fonts apply immediately (`html:not(.js)`).
+- Large decorative SVGs (hero art, map, product sprite, wheat field) are pre-rendered to static markup by
+  `npm run gen:art` into `src/generated/art.ts`, so React does not hydrate about a thousand decorative nodes.
+  The JSX components in `src/components` stay the source of truth: re-run the script after editing them.
+- Fraunces italic is pinned to the one weight the design uses, which halves its size.
 
 ## Screenshots
 

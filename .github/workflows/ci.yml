@@ -27,6 +27,8 @@ jobs:
       - run: npm ci
       - name: Type check
         run: npm run lint
+      - name: Pre-rendered SVG art is up to date
+        run: npm run gen:art && git diff --exit-code src/generated
       - name: Colour contrast of the palette pairs
         run: npm run contrast -- --strict
       - name: Build
