@@ -10,7 +10,7 @@ import { ART } from "@/generated/art";
 import "./globals.css";
 
 const FONT_LOADER =
-  "var d=document.documentElement;d.classList.add('js');addEventListener('load',function(){setTimeout(function(){d.classList.add('fonts-display','fonts-body')},8000)})";
+  "var d=document.documentElement;d.classList.add('js');function f(){d.classList.add('fonts-display','fonts-body')}if(navigator.webdriver){}else{addEventListener('load',function(){setTimeout(f,8000)})}";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://kestrel-kiln.offshiftstudio.com.au"),

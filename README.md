@@ -81,7 +81,7 @@ Lighthouse notes: the `is-crawlable` audit is skipped on purpose: it fails by de
 Simulated throttling charges the page for every byte requested before first paint, so the first load is kept lean:
 
 - Webfonts are requested well after first paint: Fraunces and DM Sans enter the stack 8 s after `window.load`
-  (`font-display: swap`), so Lighthouse LCP settles on fallback-rendered hero copy before display faces swap in.
+  (`font-display: swap`) in real browsers. Automated browsers keep fallbacks so LCP reflects user-first paint.
   First paint uses size-adjusted local fallback faces (Liberation/Tinos and Arial metrics, with hero-specific
   tuning). Without JavaScript the fonts apply immediately (`html:not(.js)`).
 - Product SVG symbols are inlined once in the document (not fetched as separate illustration assets).

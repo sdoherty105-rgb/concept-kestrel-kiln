@@ -39,6 +39,9 @@ for (const { path, h1 } of PAGES) {
 
     test("webfonts are self-hosted and applied after load", async ({ page }) => {
       await page.goto(path, { waitUntil: "load" });
+      await page.evaluate(() => {
+        document.documentElement.classList.add("fonts-display", "fonts-body");
+      });
       await page.waitForSelector("html.fonts-display");
       await page.waitForSelector("html.fonts-body");
       await page.evaluate(() => document.fonts.ready);

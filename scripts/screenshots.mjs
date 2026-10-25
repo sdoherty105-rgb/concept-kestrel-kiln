@@ -25,6 +25,9 @@ for (const s of sizes) {
   await page.clock.install({ time: new Date("2026-10-28T23:45:00Z") });
   for (const p of pages) {
     await page.goto(base + p.path, { waitUntil: "networkidle" });
+    await page.evaluate(() => {
+      document.documentElement.classList.add("fonts-display", "fonts-body");
+    });
     await page.waitForSelector("html.fonts-body");
     await page.evaluate(() => document.fonts.ready);
     await page.waitForTimeout(400);
