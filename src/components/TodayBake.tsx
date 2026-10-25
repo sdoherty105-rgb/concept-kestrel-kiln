@@ -1,7 +1,5 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import { BAKE_SLOTS, PRODUCTS, openStatus, perthNow, slotProducts } from "@/lib/bakery";
+import { TodayBakeStatus } from "./TodayBakeStatus";
 
 const FEATURED = ["country-sourdough", "butter-croissant", "kouign-amann", "spelt-batard"];
 
@@ -25,15 +23,8 @@ function statusLine(): { text: string; live: boolean } {
 }
 
 export function TodayBake() {
-  const [status, setStatus] = useState<{ text: string; live: boolean } | null>(null);
-
-  useEffect(() => {
-    setStatus(statusLine());
-    const t = setInterval(() => setStatus(statusLine()), 60_000);
-    return () => clearInterval(t);
-  }, []);
-
   const items = FEATURED.map((id) => PRODUCTS.find((p) => p.id === id)!);
+  const initialStatus = statusLine();
 
   return (
     <aside className="today" aria-labelledby="today-title" data-testid="today-bake">
@@ -48,10 +39,7 @@ export function TodayBake() {
           </li>
         ))}
       </ul>
-      <p className="status">
-        <span className={`dot ${status?.live ? "live" : ""}`} aria-hidden="true" />
-        <span>{status ? status.text : "Fresh from the kiln from 6:30 am, Tuesday to Sunday."}</span>
-      </p>
+      <TodayBakeStatus initial={initialStatus} />
     </aside>
   );
 }

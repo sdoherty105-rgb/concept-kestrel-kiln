@@ -3,21 +3,21 @@
   src: url("../fonts/Fraunces-opsz.woff2") format("woff2");
   font-weight: 400 600;
   font-style: normal;
-  font-display: optional;
+  font-display: swap;
 }
 @font-face {
   font-family: "Fraunces";
   src: url("../fonts/Fraunces-italic.woff2") format("woff2");
   font-weight: 420;
   font-style: italic;
-  font-display: optional;
+  font-display: swap;
 }
 @font-face {
   font-family: "DM Sans";
   src: url("../fonts/DMSans.woff2") format("woff2");
   font-weight: 400 700;
   font-style: normal;
-  font-display: optional;
+  font-display: swap;
 }
 @font-face {
   font-family: "Fraunces Fallback";
@@ -510,6 +510,15 @@ a {
   font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
   color: var(--ink-soft);
   max-width: 56ch;
+}
+/* Keep hero/menu ledes on metrics-matched fallbacks until body webfont is enabled (LCP). */
+.js .hero-copy .lede,
+.js .page-hero .lede {
+  font-family: "DM Sans Fallback", system-ui, Arial, sans-serif;
+}
+:root.fonts-body .hero-copy .lede,
+:root.fonts-body .page-hero .lede {
+  font-family: var(--font-body), system-ui, Arial, sans-serif;
 }
 .on-dark .lede {
   color: var(--flour);
