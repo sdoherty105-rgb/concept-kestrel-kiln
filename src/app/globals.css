@@ -3,21 +3,21 @@
   src: url("../fonts/Fraunces-opsz.woff2") format("woff2");
   font-weight: 400 600;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 @font-face {
   font-family: "Fraunces";
   src: url("../fonts/Fraunces-italic.woff2") format("woff2");
   font-weight: 420;
   font-style: italic;
-  font-display: swap;
+  font-display: optional;
 }
 @font-face {
   font-family: "DM Sans";
   src: url("../fonts/DMSans.woff2") format("woff2");
   font-weight: 400 700;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 @font-face {
   font-family: "Fraunces Fallback";
@@ -131,7 +131,7 @@
   }
 }
 
-/* Webfonts load after first paint (see layout.tsx). Without JavaScript they apply immediately. */
+/* Webfonts load on window.load (see layout.tsx). Without JavaScript they apply immediately. */
 :root.fonts-display,
 :root:not(.js) {
   --font-display: "Fraunces", "Fraunces Fallback", Georgia, "Times New Roman", serif;

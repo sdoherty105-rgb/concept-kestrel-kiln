@@ -80,9 +80,10 @@ Lighthouse notes: the `is-crawlable` audit is skipped on purpose: it fails by de
 
 Simulated throttling charges the page for every byte requested before first paint, so the first load is kept lean:
 
-- Webfonts are requested after first paint: Fraunces (display and italic) on `load`, DM Sans on idle. First paint
-  uses size-adjusted local fallback faces (Liberation/Tinos and Arial metrics, with hero-specific tuning), so the
-  swap barely moves anything. Without JavaScript the fonts apply immediately (`html:not(.js)`).
+- Webfonts are requested after first paint: Fraunces and DM Sans enter the stack together on `window.load`
+  (`font-display: optional`). First paint uses size-adjusted local fallback faces (Liberation/Tinos and Arial
+  metrics, with hero-specific tuning), so optional swaps rarely move layout. Without JavaScript the fonts apply
+  immediately (`html:not(.js)`).
 - Product SVG symbols are inlined once in the document (not fetched as separate illustration assets).
 - Large decorative SVGs (hero art, map, product sprite, wheat field) are pre-rendered to static markup by
   `npm run gen:art` into `src/generated/art.ts`, so React does not hydrate about a thousand decorative nodes.
