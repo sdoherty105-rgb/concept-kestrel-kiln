@@ -8,12 +8,6 @@ import { ProductCard } from "@/components/ProductCard";
 import { TodayBake } from "@/components/TodayBake";
 import { CAFE, PRODUCTS, PROCESS } from "@/lib/bakery";
 
-const arrow = (
-  <svg className="arrow" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
-    <path d="M3 10h13M11 4l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
-
 export default function Home() {
   const featured = (cat: "loaf" | "pastry") =>
     PRODUCTS.filter((p) => p.category === cat).slice(0, 4);
@@ -23,7 +17,7 @@ export default function Home() {
       <section className="hero" aria-labelledby="hero-title">
         <div className="wrap hero-grid">
           <div className="hero-copy">
-            <span className="eyebrow">Wattlebrook, Perth · Baked from 6:30 am</span>
+            <span className="eyebrow">Wattlebrook, Perth. Baked from 6:30 am</span>
             <h1 id="hero-title">
               <span className="line">GOOD THINGS</span>
               <span className="line">
@@ -36,7 +30,7 @@ export default function Home() {
             </p>
             <div className="cta-row">
               <Link href="/#pre-order" className="btn">
-                Pre-order for pickup {arrow}
+                Pre-order for pickup
               </Link>
               <Link href="/#oven" className="btn btn-ghost">
                 See what&rsquo;s in the oven
@@ -103,7 +97,7 @@ export default function Home() {
 
           <p style={{ marginTop: 40 }}>
             <Link href="/menu" className="btn btn-ghost">
-              See the full bake list {arrow}
+              See the full bake list
             </Link>
           </p>
         </div>

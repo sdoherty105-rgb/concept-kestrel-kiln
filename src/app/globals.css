@@ -21,28 +21,79 @@
 }
 @font-face {
   font-family: "Fraunces Fallback";
-  src: local("Times New Roman");
-  ascent-override: 82.06%;
-  descent-override: 21.39%;
+  src: local("Times New Roman"), local("Liberation Serif"), local("Tinos");
+  ascent-override: 86.55%;
+  descent-override: 22.57%;
   line-gap-override: 0%;
-  size-adjust: 119.19%;
+  size-adjust: 113.0%;
 }
 @font-face {
   font-family: "Fraunces Fallback";
-  src: local("Times New Roman Italic"), local("TimesNewRomanPS-ItalicMT");
+  src: local("Times New Roman Italic"), local("TimesNewRomanPS-ItalicMT"), local("Liberation Serif Italic"), local("Tinos Italic");
   font-style: italic;
-  ascent-override: 82.06%;
-  descent-override: 21.39%;
+  ascent-override: 90.56%;
+  descent-override: 23.61%;
   line-gap-override: 0%;
-  size-adjust: 119.19%;
+  size-adjust: 108.0%;
+}
+@font-face {
+  font-family: "Fraunces Fallback Hero S";
+  src: local("Times New Roman"), local("Liberation Serif"), local("Tinos");
+  ascent-override: 96.35%;
+  descent-override: 25.12%;
+  line-gap-override: 0%;
+  size-adjust: 101.5%;
+}
+@font-face {
+  font-family: "Fraunces Fallback Hero S";
+  src: local("Times New Roman Italic"), local("TimesNewRomanPS-ItalicMT"), local("Liberation Serif Italic"), local("Tinos Italic");
+  font-style: italic;
+  ascent-override: 98.79%;
+  descent-override: 25.76%;
+  line-gap-override: 0%;
+  size-adjust: 99.0%;
+}
+@font-face {
+  font-family: "Fraunces Fallback Hero M";
+  src: local("Times New Roman"), local("Liberation Serif"), local("Tinos");
+  ascent-override: 101.88%;
+  descent-override: 26.56%;
+  line-gap-override: 0%;
+  size-adjust: 96.0%;
+}
+@font-face {
+  font-family: "Fraunces Fallback Hero M";
+  src: local("Times New Roman Italic"), local("TimesNewRomanPS-ItalicMT"), local("Liberation Serif Italic"), local("Tinos Italic");
+  font-style: italic;
+  ascent-override: 102.95%;
+  descent-override: 26.84%;
+  line-gap-override: 0%;
+  size-adjust: 95.0%;
+}
+@font-face {
+  font-family: "Fraunces Fallback Hero L";
+  src: local("Times New Roman"), local("Liberation Serif"), local("Tinos");
+  ascent-override: 97.80%;
+  descent-override: 25.50%;
+  line-gap-override: 0%;
+  size-adjust: 100.0%;
+}
+@font-face {
+  font-family: "Fraunces Fallback Hero L";
+  src: local("Times New Roman Italic"), local("TimesNewRomanPS-ItalicMT"), local("Liberation Serif Italic"), local("Tinos Italic");
+  font-style: italic;
+  ascent-override: 98.79%;
+  descent-override: 25.76%;
+  line-gap-override: 0%;
+  size-adjust: 99.0%;
 }
 @font-face {
   font-family: "DM Sans Fallback";
-  src: local("Arial");
-  ascent-override: 94.36%;
-  descent-override: 29.49%;
+  src: local("Arial"), local("Liberation Sans"), local("Arimo");
+  ascent-override: 95.97%;
+  descent-override: 29.99%;
   line-gap-override: 0%;
-  size-adjust: 105.13%;
+  size-adjust: 103.4%;
 }
 
 :root {
@@ -65,15 +116,30 @@
   color-scheme: light;
   --font-display: "Fraunces Fallback", Georgia, "Times New Roman", serif;
   --font-display-italic: "Fraunces Fallback", Georgia, "Times New Roman", serif;
+  --font-hero-fb: "Fraunces Fallback Hero S";
+  --font-hero: var(--font-hero-fb), Georgia, "Times New Roman", serif;
   --font-body: "DM Sans Fallback", system-ui, Arial, sans-serif;
 }
+@media (min-width: 500px) {
+  :root {
+    --font-hero-fb: "Fraunces Fallback Hero M";
+  }
+}
+@media (min-width: 980px) {
+  :root {
+    --font-hero-fb: "Fraunces Fallback Hero L";
+  }
+}
 
-/* The webfonts are requested after first paint (see the inline script in layout.tsx);
-   without JavaScript they apply straight away. */
-:root.fonts,
+/* Webfonts load after first paint (see layout.tsx). Without JavaScript they apply immediately. */
+:root.fonts-display,
 :root:not(.js) {
   --font-display: "Fraunces", "Fraunces Fallback", Georgia, "Times New Roman", serif;
   --font-display-italic: "Fraunces", "Fraunces Fallback", Georgia, "Times New Roman", serif;
+  --font-hero: "Fraunces", var(--font-hero-fb), Georgia, "Times New Roman", serif;
+}
+:root.fonts-body,
+:root:not(.js) {
   --font-body: "DM Sans", "DM Sans Fallback", system-ui, Arial, sans-serif;
 }
 
@@ -407,12 +473,6 @@ a {
   padding: 0 16px;
   font-size: 0.9375rem;
 }
-.arrow {
-  width: 18px;
-  height: 18px;
-  flex: none;
-}
-
 /* Type helpers --------------------------------------------------------- */
 .eyebrow {
   font-size: 0.8125rem;
@@ -499,6 +559,8 @@ a {
   align-items: center;
 }
 .hero h1 {
+  --font-display: var(--font-hero);
+  --font-display-italic: var(--font-hero);
   font-size: clamp(3.75rem, 16vw, 7.5rem);
   line-height: 0.88;
   letter-spacing: -0.025em;
@@ -669,10 +731,12 @@ a {
   gap: 14px;
 }
 .band li::before {
-  content: "✦";
-  font-style: normal;
-  font-size: 0.7em;
-  color: var(--terracotta);
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--terracotta);
+  flex: none;
 }
 
 /* Product cards -------------------------------------------------------- */

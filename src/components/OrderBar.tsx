@@ -32,7 +32,7 @@ export function OrderBar() {
         <strong>
           {count} {count === 1 ? "item" : "items"}
         </strong>{" "}
-        · {cents(total)}
+        {cents(total)}
       </p>
       <Link href="/#pre-order" className="btn btn-gold btn-sm" tabIndex={show ? 0 : -1}>
         Review pre-order

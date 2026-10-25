@@ -15,8 +15,10 @@ const wheatField = Array.from(
   () => `<svg viewBox="0 0 40 160" aria-hidden="true" focusable="false"><use href="#wheat"></use></svg>`,
 ).join("");
 
+const sprite = renderToStaticMarkup(<ArtSprite />).replace(/<\/svg>$/, `${wheatSymbol}</svg>`);
+
 const out = {
-  sprite: renderToStaticMarkup(<ArtSprite />).replace(/<\/svg>$/, `${wheatSymbol}</svg>`),
+  sprite,
   hero: renderToStaticMarkup(<HeroArt />),
   map: renderToStaticMarkup(<MapArt />),
   wheatField,

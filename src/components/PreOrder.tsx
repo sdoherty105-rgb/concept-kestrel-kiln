@@ -202,7 +202,7 @@ export function PreOrder() {
                             {p.name}
                           </div>
                           <div className="sub">
-                            {cents(p.price)} · out at {BAKE_SLOTS[p.slot].label}
+                            {cents(p.price)}, out at {BAKE_SLOTS[p.slot].label}
                           </div>
                         </div>
                         <div className="stepper">
@@ -412,7 +412,7 @@ export function PreOrder() {
               <dl>
                 <div>
                   <dt>Pickup</dt>
-                  <dd>{order.day || slot ? `${order.day || "Day?"} · ${slot?.label ?? "Time?"}` : "Choose a day and time"}</dd>
+                  <dd>{order.day || slot ? `${order.day || "Day?"}, ${slot?.label ?? "Time?"}` : "Choose a day and time"}</dd>
                 </div>
                 <div>
                   <dt>Total, pay at pickup</dt>

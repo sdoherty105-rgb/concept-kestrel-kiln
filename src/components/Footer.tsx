@@ -60,7 +60,7 @@ export function Footer() {
             <a href={SITE.conceptUrl} target="_blank" rel="noopener">
               {SITE.conceptLabel}
             </a>
-            {" · "}Designed by{" "}
+            {" "}Designed by{" "}
             <a href={SITE.studioUrl} target="_blank" rel="noopener">
               OFF/SHIFT Studio
             </a>

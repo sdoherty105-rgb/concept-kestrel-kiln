@@ -10,7 +10,7 @@ import { ART } from "@/generated/art";
 import "./globals.css";
 
 const FONT_LOADER =
-  "var d=document.documentElement;d.classList.add('js');addEventListener('load',function(){setTimeout(function(){d.classList.add('fonts')},150)})";
+  "var d=document.documentElement;d.classList.add('js');addEventListener('load',function(){setTimeout(function(){d.classList.add('fonts-display')},120);(window.requestIdleCallback||function(f){setTimeout(f,1)})(function(){d.classList.add('fonts-body')})})";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://kestrel-kiln.offshiftstudio.com.au"),
@@ -48,7 +48,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a href="#main" className="skip-link">
           Skip to content
         </a>
-        <div style={{ position: "absolute", width: 0, height: 0, overflow: "hidden" }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ART.sprite }} />
+        <div
+          style={{ position: "absolute", width: 0, height: 0, overflow: "hidden" }}
+          aria-hidden="true"
+          dangerouslySetInnerHTML={{ __html: ART.sprite }}
+        />
         <ConceptBar />
         <OrderProvider>
           <Header />

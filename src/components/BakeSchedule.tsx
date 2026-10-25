@@ -182,7 +182,7 @@ export function BakeSchedule() {
                     }}
                     aria-current={slotId === slot.id ? "true" : undefined}
                   >
-                    Pre-order for a {slot.label} pickup<span aria-hidden="true"> →</span>
+                    Pre-order for a {slot.label} pickup
                   </Link>
                 </div>
               </li>

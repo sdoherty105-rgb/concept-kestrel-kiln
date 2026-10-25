@@ -39,7 +39,8 @@ for (const { path, h1 } of PAGES) {
 
     test("webfonts are self-hosted and applied after load", async ({ page }) => {
       await page.goto(path, { waitUntil: "load" });
-      await page.waitForSelector("html.fonts");
+      await page.waitForSelector("html.fonts-display");
+      await page.waitForSelector("html.fonts-body");
       await page.evaluate(() => document.fonts.ready);
       const loaded = await page.evaluate(() => [...document.fonts].filter((f) => f.status === "loaded").map((f) => f.family));
       expect(loaded.join(" ")).toMatch(/DM Sans/);
