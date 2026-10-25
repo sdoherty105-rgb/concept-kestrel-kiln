@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { BakeSchedule } from "@/components/BakeSchedule";
 import { CafeHours } from "@/components/CafeHours";
-import { HeroArt, MapArt, Wheat } from "@/components/Illustrations";
+import { StaticSvg } from "@/components/Illustrations";
+import { ART } from "@/generated/art";
 import { PreOrder } from "@/components/PreOrder";
 import { ProductCard } from "@/components/ProductCard";
 import { TodayBake } from "@/components/TodayBake";
@@ -48,7 +49,7 @@ export default function Home() {
             </div>
           </div>
           <div className="hero-art">
-            <HeroArt />
+            <StaticSvg className="hero-svg" html={ART.hero} />
             <TodayBake />
           </div>
         </div>
@@ -135,11 +136,7 @@ export default function Home() {
               </li>
             ))}
           </ol>
-          <div className="process-field" aria-hidden="true">
-            {Array.from({ length: 22 }).map((_, i) => (
-              <Wheat key={i} />
-            ))}
-          </div>
+          <div className="process-field" aria-hidden="true" dangerouslySetInnerHTML={{ __html: ART.wheatField }} />
         </div>
       </section>
 
@@ -178,7 +175,7 @@ export default function Home() {
               </div>
             </div>
             <div className="map reveal">
-              <MapArt />
+              <StaticSvg className="map-svg" html={ART.map} />
               <p className="map-note">Illustrative map of a fictional suburb.</p>
             </div>
           </div>
