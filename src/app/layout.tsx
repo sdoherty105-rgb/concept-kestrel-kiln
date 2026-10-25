@@ -49,15 +49,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         <ConceptBar />
+        <Header />
         <OrderProvider>
-          <Header />
           <main id="main" tabIndex={-1}>
             {children}
           </main>
-          <Footer />
           <OrderBar />
           <Reveal />
         </OrderProvider>
+        <Footer />
         <div
           style={{ position: "absolute", width: 0, height: 0, overflow: "hidden" }}
           aria-hidden="true"

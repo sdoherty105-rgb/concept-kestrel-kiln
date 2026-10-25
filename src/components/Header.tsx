@@ -1,9 +1,6 @@
-"use client";
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useRef } from "react";
 import { KestrelMark } from "./Illustrations";
+import { NavMobile } from "./NavMobile";
 
 const LINKS = [
   { href: "/#bakes", label: "Bakes" },
@@ -14,10 +11,6 @@ const LINKS = [
 ];
 
 export function Header() {
-  const pathname = usePathname();
-  const menu = useRef<HTMLDetailsElement>(null);
-  const close = () => menu.current?.removeAttribute("open");
-
   return (
     <header className="site-header">
       <div className="wrap">
@@ -28,7 +21,7 @@ export function Header() {
 
         <nav className="nav-desktop" aria-label="Main">
           {LINKS.map((l) => (
-            <Link key={l.href} href={l.href} aria-current={pathname === l.href ? "page" : undefined}>
+            <Link key={l.href} href={l.href}>
               {l.label}
             </Link>
           ))}
@@ -38,19 +31,7 @@ export function Header() {
           <Link href="/#pre-order" className="btn btn-sm">
             Pre-order
           </Link>
-          <details className="nav-mobile" ref={menu}>
-            <summary>
-              <span>Menu</span>
-              <span className="visually-hidden"> — site navigation</span>
-            </summary>
-            <nav className="panel" aria-label="Main, mobile">
-              {LINKS.map((l) => (
-                <Link key={l.href} href={l.href} onClick={close}>
-                  {l.label}
-                </Link>
-              ))}
-            </nav>
-          </details>
+          <NavMobile />
         </div>
       </div>
     </header>
