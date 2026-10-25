@@ -16,18 +16,18 @@ export default function Home() {
     <>
       <section className="hero" aria-labelledby="hero-title">
         <div className="wrap hero-grid">
-          <div className="hero-copy">
+          <div className="hero-copy hero-copy-stack">
             <span className="eyebrow">Wattlebrook, Perth. Baked from 6:30 am</span>
+            <p className="lede">
+              Kestrel &amp; Kiln is a neighbourhood bakery and cafe where every loaf rests overnight and every
+              croissant is folded by hand. Order ahead, and your bag is waiting when you arrive.
+            </p>
             <h1 id="hero-title">
               <span className="line">GOOD THINGS</span>
               <span className="line">
                 TAKE <em>TIME.</em>
               </span>
             </h1>
-            <p className="lede">
-              Kestrel &amp; Kiln is a neighbourhood bakery and cafe where every loaf rests overnight and every
-              croissant is folded by hand. Order ahead, and your bag is waiting when you arrive.
-            </p>
             <div className="cta-row">
               <Link href="/#pre-order" className="btn">
                 Pre-order for pickup
