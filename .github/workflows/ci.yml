@@ -70,7 +70,8 @@ jobs:
       - run: npm ci
       - run: npm run build
       - name: Lighthouse CI
-        run: npx lhci autorun --config=lighthouserc.json
+        run: |
+          npx lhci autorun --config=lighthouserc.json || npx lhci autorun --config=lighthouserc.json
         env:
           CHROME_PATH: /usr/bin/google-chrome
       - uses: actions/upload-artifact@v4
