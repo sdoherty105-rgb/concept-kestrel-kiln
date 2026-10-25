@@ -12,8 +12,7 @@ everywhere (meta robots, `X-Robots-Tag` header, `robots.txt` with `Disallow: /`)
 
 ## Direction
 
-Warm, editorial and slow-baked: morning light, paper grain, Fraunces display type with DM Sans for reading. The
-business goal is pre-orders for pickup and cafe visits.
+A typographic bakery shopfront: oversized masthead, open product counter, ruled bake ledger and compact cafe information. Fraunces and DM Sans are self-hosted and loaded from first render. No hero illustration panel, decorative grain overlay, or repeated feature cards. The business goal is pre-orders for pickup and cafe visits.
 
 Palette: espresso `#27221E`, flour `#F1E8D9`, crust gold `#E2BD7C`, page `#FAF7F1`, terracotta `#A76549`.
 
@@ -21,7 +20,7 @@ Palette: espresso `#27221E`, flour `#F1E8D9`, crust gold `#E2BD7C`, page `#FAF7F
 
 | Route | What it is |
 | --- | --- |
-| `/` | Hero with "GOOD THINGS TAKE TIME." and today's bake, signature loaves and pastries, the **what's in the oven** daily bake schedule, the process (slow ferment, local flour), the cafe (hours, location, map), the **pre-order form** and footer |
+| `/` | Bakery masthead and product counter, signature loaves and pastries, the **what's in the oven** daily bake schedule, the process (slow ferment, local flour), the cafe (hours, location, map), the **pre-order form** and footer |
 | `/menu` | The full bake list (11 bakes with prices and oven times, all pre-orderable) plus the cafe counter menu and allergen note |
 | `/robots.txt` | `Disallow: /` |
 | 404 | Branded not-found page |
@@ -80,10 +79,7 @@ Lighthouse notes: the `is-crawlable` audit is skipped on purpose: it fails by de
 
 Simulated throttling charges the page for every byte requested before first paint, so the first load is kept lean:
 
-- Webfonts are requested well after first paint: Fraunces and DM Sans enter the stack 8 s after `window.load`
-  (`font-display: swap`) in real browsers. Automated browsers keep fallbacks so LCP reflects user-first paint.
-  First paint uses size-adjusted local fallback faces (Liberation/Tinos and Arial metrics, with hero-specific
-  tuning). Without JavaScript the fonts apply immediately (`html:not(.js)`).
+- Webfonts are self-hosted and requested from first render, with the display face preloaded. Every browser receives the same fonts; there is no user-agent check or delayed font switch.
 - Product SVG symbols are inlined once in the document (not fetched as separate illustration assets).
 - Large decorative SVGs (hero art, map, product sprite, wheat field) are pre-rendered to static markup by
   `npm run gen:art` into `src/generated/art.ts`, so React does not hydrate about a thousand decorative nodes.
@@ -94,3 +90,4 @@ Simulated throttling charges the page for every byte requested before first pain
 
 `docs/screens/` holds full-page captures of the home page and `/menu` at 390, 768 and 1440 px, regenerated with
 `node scripts/screenshots.mjs` against a running production build.
+
