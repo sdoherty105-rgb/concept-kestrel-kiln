@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 const PAGES = [
-  { path: "/", h1: /GOOD THINGS\s*TAKE\s*TIME\./ },
+  { path: "/", h1: /Kestrel\s*&\s*Kiln/ },
   { path: "/menu", h1: /The bake\s*list\./ },
 ];
 
@@ -107,3 +107,4 @@ test("hero headline and today's bake are present", async ({ page }) => {
   await expect(page.getByTestId("today-bake")).toContainText("Country Sourdough");
   await expect(page.getByRole("link", { name: /Pre-order for pickup/ }).first()).toBeVisible();
 });
+
