@@ -133,11 +133,6 @@ html {
   scroll-padding-top: calc(var(--header-h) + 24px);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
-}
 
 body {
   margin: 0;
@@ -498,6 +493,10 @@ a {
 :root.fonts-body .hero-copy .lede,
 :root.fonts-body .page-hero .lede {
   font-family: var(--font-body), system-ui, Arial, sans-serif;
+}
+.hero-copy .lede,
+.page-hero .lede {
+  contain: layout;
 }
 .on-dark .lede {
   color: var(--flour);
