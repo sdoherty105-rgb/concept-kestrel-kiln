@@ -1677,6 +1677,12 @@ textarea.input {
 }
 
 /* Inner page header ---------------------------------------------------- */
+/* Skip below-the-fold menu layout until needed (mobile LCP is the page-hero lede). */
+.menu-page ~ .section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1000px;
+}
+
 .page-hero {
   padding-block: clamp(48px, 7vw, 104px) clamp(40px, 5vw, 72px);
   background:

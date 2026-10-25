@@ -49,7 +49,7 @@ function BakeList({ category }: { category: "loaf" | "pastry" }) {
 export default function MenuPage() {
   return (
     <>
-      <section className="page-hero" aria-labelledby="menu-title">
+      <section className="page-hero menu-page" aria-labelledby="menu-title">
         <div className="wrap">
           <span className="eyebrow">Full menu</span>
           <h1 id="menu-title">
