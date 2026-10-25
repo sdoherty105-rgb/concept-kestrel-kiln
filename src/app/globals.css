@@ -1,3 +1,50 @@
+@font-face {
+  font-family: "Fraunces";
+  src: url("../fonts/Fraunces-opsz.woff2") format("woff2");
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Fraunces";
+  src: url("../fonts/Fraunces-italic.woff2") format("woff2");
+  font-weight: 420;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "DM Sans";
+  src: url("../fonts/DMSans.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Fraunces Fallback";
+  src: local("Times New Roman");
+  ascent-override: 82.06%;
+  descent-override: 21.39%;
+  line-gap-override: 0%;
+  size-adjust: 119.19%;
+}
+@font-face {
+  font-family: "Fraunces Fallback";
+  src: local("Times New Roman Italic"), local("TimesNewRomanPS-ItalicMT");
+  font-style: italic;
+  ascent-override: 82.06%;
+  descent-override: 21.39%;
+  line-gap-override: 0%;
+  size-adjust: 119.19%;
+}
+@font-face {
+  font-family: "DM Sans Fallback";
+  src: local("Arial");
+  ascent-override: 94.36%;
+  descent-override: 29.49%;
+  line-gap-override: 0%;
+  size-adjust: 105.13%;
+}
+
 :root {
   --espresso: #27221e;
   --flour: #f1e8d9;
@@ -16,6 +63,18 @@
   --pad: clamp(20px, 5vw, 56px);
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
   color-scheme: light;
+  --font-display: "Fraunces Fallback", Georgia, "Times New Roman", serif;
+  --font-display-italic: "Fraunces Fallback", Georgia, "Times New Roman", serif;
+  --font-body: "DM Sans Fallback", system-ui, Arial, sans-serif;
+}
+
+/* The webfonts are requested after first paint (see the inline script in layout.tsx);
+   without JavaScript they apply straight away. */
+:root.fonts,
+:root:not(.js) {
+  --font-display: "Fraunces", "Fraunces Fallback", Georgia, "Times New Roman", serif;
+  --font-display-italic: "Fraunces", "Fraunces Fallback", Georgia, "Times New Roman", serif;
+  --font-body: "DM Sans", "DM Sans Fallback", system-ui, Arial, sans-serif;
 }
 
 *,
@@ -491,7 +550,7 @@ a {
   margin-inline: auto;
   width: 100%;
 }
-.hero-art > svg {
+.hero-svg svg {
   width: 100%;
   height: auto;
   filter: drop-shadow(0 30px 40px rgba(39, 34, 30, 0.18));
@@ -1160,6 +1219,10 @@ a {
   align-self: stretch;
   min-height: 280px;
   background: var(--flour);
+}
+.map-svg,
+.map-svg svg {
+  display: block;
 }
 .map svg {
   width: 100%;

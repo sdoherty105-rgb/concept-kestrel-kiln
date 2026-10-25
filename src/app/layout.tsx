@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
 import { SITE } from "@/lib/bakery";
 import { ConceptBar } from "@/components/ConceptBar";
 import { Header } from "@/components/Header";
@@ -7,31 +6,11 @@ import { Footer } from "@/components/Footer";
 import { OrderProvider } from "@/components/OrderProvider";
 import { OrderBar } from "@/components/OrderBar";
 import { Reveal } from "@/components/Reveal";
-import { ArtSprite } from "@/components/ProductArt";
+import { ART } from "@/generated/art";
 import "./globals.css";
 
-const display = localFont({
-  src: [{ path: "../fonts/Fraunces-opsz.woff2", weight: "400 600", style: "normal" }],
-  variable: "--font-display",
-  display: "swap",
-  fallback: ["Georgia", "Times New Roman", "serif"],
-  adjustFontFallback: "Times New Roman",
-});
-
-const displayItalic = localFont({
-  src: [{ path: "../fonts/Fraunces-italic.woff2", weight: "100 900", style: "italic" }],
-  variable: "--font-display-italic",
-  display: "swap",
-  preload: false,
-});
-
-const body = localFont({
-  src: [{ path: "../fonts/DMSans.woff2", weight: "400 700", style: "normal" }],
-  variable: "--font-body",
-  display: "swap",
-  fallback: ["system-ui", "Arial", "sans-serif"],
-  adjustFontFallback: "Arial",
-});
+const FONT_LOADER =
+  "var d=document.documentElement;d.classList.add('js');addEventListener('load',function(){setTimeout(function(){d.classList.add('fonts')},150)})";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://kestrel-kiln.offshiftstudio.com.au"),
@@ -61,15 +40,15 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-AU" className={`${display.variable} ${displayItalic.variable} ${body.variable}`}>
+    <html lang="en-AU">
       <head>
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+        <script dangerouslySetInnerHTML={{ __html: FONT_LOADER }} />
       </head>
       <body>
         <a href="#main" className="skip-link">
           Skip to content
         </a>
-        <ArtSprite />
+        <div style={{ position: "absolute", width: 0, height: 0, overflow: "hidden" }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ART.sprite }} />
         <ConceptBar />
         <OrderProvider>
           <Header />

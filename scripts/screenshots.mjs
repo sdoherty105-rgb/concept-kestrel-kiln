@@ -25,6 +25,7 @@ for (const s of sizes) {
   await page.clock.install({ time: new Date("2026-10-28T23:45:00Z") });
   for (const p of pages) {
     await page.goto(base + p.path, { waitUntil: "networkidle" });
+    await page.waitForSelector("html.fonts");
     await page.evaluate(() => document.fonts.ready);
     await page.waitForTimeout(400);
     await page.screenshot({ path: `${out}/${p.name}-${s.name}.png`, fullPage: true });

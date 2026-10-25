@@ -22,13 +22,13 @@ TEXT = (
 
 JOBS = [
     ("fraunces-latin-opsz-normal.woff2", "Fraunces-opsz.woff2", {"wght": (400, 600), "opsz": (14, 144)}),
-    ("fraunces-latin-wght-italic.woff2", "Fraunces-italic.woff2", None),
+    ("fraunces-latin-wght-italic.woff2", "Fraunces-italic.woff2", {"wght": 420}),
     ("dm-sans-latin-wght-normal.woff2", "DMSans.woff2", {"wght": (400, 700)}),
 ]
 
 for src_name, out_name, limits in JOBS:
     font = TTFont(SRC / src_name)
-    if limits:
+    if limits and not out_name.endswith("italic.woff2"):
         font = instancer.instantiateVariableFont(font, limits)
     opts = subset.Options()
     opts.flavor = "woff2"
@@ -39,6 +39,8 @@ for src_name, out_name, limits in JOBS:
     sub = subset.Subsetter(opts)
     sub.populate(text=TEXT)
     sub.subset(font)
+    if limits and out_name.endswith("italic.woff2"):
+        font = instancer.instantiateVariableFont(font, limits)
     font.flavor = "woff2"
     font.save(OUT / out_name)
     print(out_name, (OUT / out_name).stat().st_size)
