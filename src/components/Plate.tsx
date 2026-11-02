@@ -1,6 +1,16 @@
 import { BAKE_SLOTS, cents, type Product } from "@/lib/bakery";
 import { PlateStepper } from "./PlateStepper";
 
+/** Different crop, scale and side so the sequence is not six copies of one frame. */
+const FRAMES = [
+  { side: "right", scale: "large", crop: "low" },
+  { side: "right", scale: "small", crop: "high" },
+  { side: "left", scale: "medium", crop: "center" },
+  { side: "right", scale: "small", crop: "tight" },
+  { side: "left", scale: "large", crop: "low" },
+  { side: "right", scale: "medium", crop: "high" },
+] as const;
+
 const ALT: Record<string, string> = {
   "country-sourdough": "A round country sourdough boule with a blistered crust, on a seamless flour-coloured ground.",
   "butter-croissant": "A single butter croissant, laminated and golden, on a seamless flour-coloured ground.",
@@ -14,6 +24,7 @@ export function Plate({ product, index }: { product: Product; index: number }) {
   const slot = BAKE_SLOTS[product.slot];
   const n = String(index + 1).padStart(2, "0");
   const first = index === 0;
+  const frame = FRAMES[index] ?? FRAMES[0];
   const Title = first ? "h1" : "h2";
   const src = `/bakes/${product.id}`;
 
@@ -21,6 +32,9 @@ export function Plate({ product, index }: { product: Product; index: number }) {
     <section
       className={first ? "plate plate-first" : "plate"}
       data-layout="plate"
+      data-side={frame.side}
+      data-scale={frame.scale}
+      data-crop={frame.crop}
       id={first ? "bakes" : `plate-${product.id}`}
       aria-labelledby={`name-${product.id}`}
       data-testid="product-card"

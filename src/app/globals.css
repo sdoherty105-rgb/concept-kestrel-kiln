@@ -332,12 +332,62 @@ button:disabled {
   display: block;
   width: 100%;
   height: auto;
-  max-height: 92vh;
+  max-height: 78vh;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  object-position: 62% 58%;
+  object-position: center;
+  background: transparent;
+}
+
+.plate[data-side="left"] .plate-copy {
+  grid-column: 8 / 12;
+}
+
+.plate[data-side="left"] .plate-photo {
+  grid-column: 1 / 7;
+  justify-self: start;
+}
+
+.plate[data-scale="small"] .plate-photo {
+  width: 68%;
+  align-self: center;
+}
+
+.plate[data-scale="medium"] .plate-photo {
+  width: 84%;
+}
+
+.plate[data-scale="large"] .plate-photo img {
+  max-height: 92vh;
+}
+
+.plate[data-scale="small"] .plate-photo img {
+  max-height: 52vh;
+}
+
+.plate[data-scale="medium"] .plate-photo img {
+  max-height: 68vh;
+}
+
+.plate[data-crop="high"] .plate-photo img {
+  object-position: 50% 12%;
+}
+
+.plate[data-crop="low"] .plate-photo img {
+  object-position: 58% 78%;
+}
+
+.plate[data-crop="tight"] .plate-photo img {
+  aspect-ratio: 1;
+  object-position: 50% 42%;
+}
+
+.plate[data-crop="center"] .plate-photo img {
+  object-position: center 40%;
+}
+
+.plate-first .plate-photo img {
   background: var(--flour);
-  margin-bottom: -6vh;
 }
 
 /* Bake clock ---------------------------------------------------------- */
@@ -978,37 +1028,42 @@ textarea.input {
   right: 0;
   bottom: 0;
   z-index: 40;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 56px;
+  display: flex;
+  align-items: stretch;
+  min-height: 48px;
   background: var(--flour);
   border-top: 1px solid var(--rule);
 }
 
-.dock a {
+.dock-order {
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
   min-height: 48px;
-  padding: 8px 12px;
+  padding: 0 16px;
+  color: var(--ember);
   text-decoration: none;
   font-size: var(--label);
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  text-align: center;
-}
-
-.dock-order {
-  color: var(--ember);
-  border-left: 1px solid var(--rule);
-  flex-wrap: wrap;
+  white-space: nowrap;
 }
 
 .dock-order .nums {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
   color: var(--ink);
   font-weight: 400;
+  min-width: 0;
+}
+
+.dock-action {
+  flex: none;
 }
 
 .site-footer {
@@ -1035,20 +1090,11 @@ textarea.input {
 }
 
 @media (min-width: 900px) {
-  .dock {
-    grid-template-columns: 1fr;
-  }
-
-  .dock .dock-bakes {
-    display: none;
-  }
-
   .dock[data-has="0"] {
     display: none;
   }
 
   .dock-order {
-    border-left: 0;
     justify-content: flex-end;
     padding-right: 28px;
   }
@@ -1069,27 +1115,48 @@ textarea.input {
     align-items: stretch;
   }
 
-  .plate-photo {
+  .plate-photo,
+  .plate[data-scale="small"] .plate-photo,
+  .plate[data-scale="medium"] .plate-photo,
+  .plate[data-scale="large"] .plate-photo,
+  .plate[data-side="left"] .plate-photo {
     order: -1;
     width: 100%;
-    height: min(60vh, calc(100svh - 460px));
-    min-height: 240px;
+    height: min(38vh, calc(100svh - 560px));
+    min-height: 168px;
     margin: 0;
+    grid-column: auto;
+    justify-self: stretch;
+    align-self: stretch;
   }
 
-  .plate-photo img {
+  .plate[data-scale="large"] .plate-photo {
+    height: min(42vh, calc(100svh - 540px));
+  }
+
+  .plate[data-scale="small"] .plate-photo {
+    height: min(32vh, calc(100svh - 580px));
+  }
+
+  .plate-photo img,
+  .plate[data-scale="small"] .plate-photo img,
+  .plate[data-scale="medium"] .plate-photo img,
+  .plate[data-scale="large"] .plate-photo img {
     width: 100%;
     height: 100%;
     max-height: none;
     margin: 0;
     aspect-ratio: auto;
     object-fit: cover;
-    object-position: center 42%;
   }
 
   .plate-copy {
-    padding: 20px 20px 32px;
-    gap: 12px;
+    padding: 16px 20px 88px;
+    gap: 10px;
+  }
+
+  .plate-name {
+    font-size: clamp(36px, 10vw, 56px);
   }
 
   .order-layout,

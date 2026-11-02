@@ -10,14 +10,13 @@ export function OrderBar() {
 
   return (
     <nav className="dock" aria-label="Order" data-has={count > 0 ? "1" : "0"} data-testid="order-bar">
-      <Link className="dock-bakes" href="/#bakes">
-        Bakes
-      </Link>
       <Link className="dock-order" href="/#pre-order">
         <span className="nums" aria-live="polite">
-          <span className="label">Demonstration</span> <strong>{items}</strong> {cents(total)}
+          <span className="label">Demonstration</span>
+          <strong>{items}</strong>
+          <span>{cents(total)}</span>
         </span>
-        <span>{count > 0 ? "Review pre-order" : "Order"}</span>
+        <span className="dock-action">{count > 0 ? "Review pre-order" : "Order"}</span>
       </Link>
     </nav>
   );
