@@ -1,8 +1,8 @@
 import { expect, test } from "@playwright/test";
 
 const PAGES = [
-  { path: "/", h1: /Kestrel\s*&\s*Kiln/ },
-  { path: "/menu", h1: /The bake\s*list\./ },
+  { path: "/", h1: /Country Sourdough/ },
+  { path: "/menu", h1: /Price list/ },
 ];
 
 const CONCEPT_URL = "https://offshiftstudio.com.au/concepts/kestrel-kiln";
@@ -50,8 +50,7 @@ for (const { path, h1 } of PAGES) {
       await page.waitForSelector("html.fonts-body");
       await page.evaluate(() => document.fonts.ready);
       const loaded = await page.evaluate(() => [...document.fonts].filter((f) => f.status === "loaded").map((f) => f.family));
-      expect(loaded.join(" ")).toMatch(/DM Sans/);
-      expect(loaded.join(" ")).toMatch(/Fraunces/);
+      expect(loaded.join(" ")).toMatch(/Hanken Grotesk/);
     });
 
     test("loads nothing from other origins (no trackers, no external fonts)", async ({ page }) => {
@@ -75,7 +74,7 @@ for (const { path, h1 } of PAGES) {
       if (path === "/") {
         await expect(page.getByTestId("slot-0630")).toBeVisible();
         await expect(page.getByTestId("slot-1200")).toContainText("Rosemary");
-        await expect(page.getByText("Skip the queue.")).toBeVisible();
+        await expect(page.getByText("This form is a demonstration and sends nothing.")).toBeVisible();
         await expect(page.getByRole("button", { name: /Place demo pre-order/ })).toBeDisabled();
       }
       await ctx.close();
@@ -105,6 +104,6 @@ test("robots.txt disallows everything", async ({ request }) => {
 test("hero headline and today's bake are present", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByTestId("today-bake")).toContainText("Country Sourdough");
-  await expect(page.getByRole("link", { name: /Pre-order for pickup/ }).first()).toBeVisible();
+  await expect(page.getByRole("button", { name: /Add to Saturday order/ }).first()).toBeVisible();
 });
 

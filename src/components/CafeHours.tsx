@@ -31,7 +31,7 @@ export function CafeHours() {
         </tbody>
       </table>
       <p className="open-status" aria-live="polite">
-        <span className="dot" aria-hidden="true" style={{ background: status?.open ? "#5C6A3B" : "var(--terracotta-deep)" }} />
+        <span className={status?.open ? "dot live" : "dot"} aria-hidden="true" />
         <span>{status ? status.text : "Open Tuesday to Sunday. Closed Mondays."}</span>
       </p>
     </div>

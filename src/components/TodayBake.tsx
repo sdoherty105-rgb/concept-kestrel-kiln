@@ -1,3 +1,5 @@
+"use client";
+
 import { BAKE_SLOTS, PRODUCTS, openStatus, perthNow, slotProducts } from "@/lib/bakery";
 import { TodayBakeStatus } from "./TodayBakeStatus";
 

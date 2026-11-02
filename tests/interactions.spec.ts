@@ -40,7 +40,7 @@ test.describe("pre-order flow (demo)", () => {
   test("adding items updates the ticket and the floating order bar", async ({ page }) => {
     await page.goto("/");
     const card = page.getByTestId("product-card").first();
-    await card.getByRole("button", { name: /Add Country Sourdough to pre-order/ }).click();
+    await card.getByRole("button", { name: /Add to Saturday order/ }).click();
     await card.getByRole("button", { name: "Add one more Country Sourdough" }).click();
     await expect(page.getByTestId("ticket-total")).toHaveText("$19.00");
     await expect(page.getByTestId("order-bar")).toContainText("2 items");

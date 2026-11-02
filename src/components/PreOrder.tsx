@@ -103,16 +103,16 @@ export function PreOrder() {
   const err = (k: keyof Errors) => (errors[k] ? `${uid}-${k}-err` : undefined);
 
   return (
-    <section id="pre-order" className="section on-flour" aria-labelledby="order-title">
-      <div className="wrap">
+    <section id="pre-order" className="ledger-plate" data-layout="order-ledger" aria-labelledby="order-title">
+      <div className="ledger-copy">
         <div className="section-head">
-          <span className="eyebrow">Pre-order for pickup</span>
-          <h2 id="order-title" className="h2">
-            Skip the queue. <em>We&rsquo;ll hold it warm.</em>
+          <p className="label">Order ledger</p>
+          <h2 id="order-title" className="plate-name">
+            The order
           </h2>
-          <p className="lede">
-            Choose your bakes, pick a day and a time, and we&rsquo;ll have a paper bag waiting with your name on
-            it. Pre-orders close {CAFE.preorderCutoff} and are held until {CAFE.holdUntil}. Pay at the counter.
+          <p className="plate-sentence">
+            This form is a demonstration and sends nothing. Orders close {CAFE.preorderCutoff} and are held until{" "}
+            {CAFE.holdUntil}. Pay at the counter.
           </p>
         </div>
 

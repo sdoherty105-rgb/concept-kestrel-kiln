@@ -32,6 +32,13 @@ export type ArtKind =
 
 export type Category = "loaf" | "pastry";
 
+/** Invented lab-label values. The business is fictional. */
+export type Spec = {
+  flour: string;
+  hydration: string;
+  ferment: string;
+};
+
 export type Product = {
   id: string;
   name: string;
@@ -42,6 +49,7 @@ export type Product = {
   slot: number;
   blurb: string;
   detail: string;
+  spec: Spec;
   signature?: boolean;
 };
 
@@ -65,6 +73,7 @@ export const PRODUCTS: Product[] = [
     price: 950,
     slot: 0,
     signature: true,
+    spec: { flour: "Stone-milled wheat", hydration: "78%", ferment: "18 h" },
     blurb: "Blistered crust, open crumb, a gentle tang.",
     detail:
       "Our house loaf. Stone-milled wheat, a long cold ferment and a hard bake in the kiln until the crust sings.",
@@ -77,6 +86,7 @@ export const PRODUCTS: Product[] = [
     price: 1100,
     slot: 0,
     signature: true,
+    spec: { flour: "Wholegrain rye", hydration: "85%", ferment: "16 h" },
     blurb: "Dense, dark and deeply savoury.",
     detail:
       "Wholegrain rye with toasted caraway. Slice it thin, keep it a day, and it only gets better with salted butter.",
@@ -89,6 +99,7 @@ export const PRODUCTS: Product[] = [
     price: 1150,
     slot: 3,
     signature: true,
+    spec: { flour: "Spelt and mixed seed", hydration: "74%", ferment: "14 h" },
     blurb: "Sesame, sunflower and linseed in a nutty spelt dough.",
     detail:
       "A softer, sweeter crumb with a crackling seed crust. Built for toast, built for cheese.",
@@ -100,6 +111,7 @@ export const PRODUCTS: Product[] = [
     art: "tin",
     price: 1000,
     slot: 3,
+    spec: { flour: "Wheat and rolled oats", hydration: "68%", ferment: "8 h" },
     blurb: "The sandwich loaf, done properly.",
     detail:
       "Baked in a tin for an even, tender slice with a toasty oat top. Soft enough for lunchboxes, good enough for the cafe.",
@@ -111,6 +123,7 @@ export const PRODUCTS: Product[] = [
     art: "focaccia",
     price: 1300,
     slot: 6,
+    spec: { flour: "Wheat and olive oil", hydration: "80%", ferment: "20 h" },
     blurb: "Olive oil, dimples and flaky salt.",
     detail:
       "A high, springy focaccia baked in the midday run, with plenty of oil pooled in every dimple.",
@@ -123,6 +136,7 @@ export const PRODUCTS: Product[] = [
     price: 650,
     slot: 1,
     signature: true,
+    spec: { flour: "Wheat, cultured butter", hydration: "52%", ferment: "72 h" },
     blurb: "Shatter-crisp outside, honeycombed within.",
     detail:
       "Three days of folding, cold butter and patience. Best eaten within the hour, ideally while still warm.",
@@ -134,6 +148,7 @@ export const PRODUCTS: Product[] = [
     art: "almond",
     price: 800,
     slot: 3,
+    spec: { flour: "Wheat and frangipane", hydration: "52%", ferment: "72 h" },
     blurb: "Frangipane, toasted flaked almonds, icing sugar.",
     detail:
       "Yesterday's croissants, soaked in orange-blossom syrup, filled with frangipane and baked again until burnished.",
@@ -146,6 +161,7 @@ export const PRODUCTS: Product[] = [
     price: 700,
     slot: 2,
     signature: true,
+    spec: { flour: "Wheat, salted butter", hydration: "55%", ferment: "24 h" },
     blurb: "Caramelised, salty, impossibly buttery.",
     detail:
       "Laminated dough folded with sugar and baked in a muffin ring until the edges turn deep amber.",
@@ -157,6 +173,7 @@ export const PRODUCTS: Product[] = [
     art: "bun",
     price: 650,
     slot: 2,
+    spec: { flour: "Wheat and cardamom", hydration: "64%", ferment: "12 h" },
     blurb: "Knotted, spiced and sticky.",
     detail:
       "Freshly ground cardamom, soft brioche-style dough, and a glaze of crust-gold syrup.",
@@ -168,6 +185,7 @@ export const PRODUCTS: Product[] = [
     art: "scroll",
     price: 700,
     slot: 4,
+    spec: { flour: "Wheat, brown butter", hydration: "66%", ferment: "10 h" },
     blurb: "Soft spirals under a whisper of icing.",
     detail:
       "A tender, pillowy scroll rolled with brown butter and cinnamon sugar. Warm from the oven at nine.",
@@ -179,11 +197,24 @@ export const PRODUCTS: Product[] = [
     art: "danish",
     price: 750,
     slot: 5,
+    spec: { flour: "Wheat and pastry cream", hydration: "54%", ferment: "24 h" },
     blurb: "Vanilla custard and whatever is ripe.",
     detail:
       "Laminated pastry, pastry cream and the best fruit we can find that week, finished with an apricot glaze.",
   },
 ];
+
+/** One product per screen, in plate order. Specimen pages are held for a later phase. */
+export const PLATE_IDS = [
+  "country-sourdough",
+  "butter-croissant",
+  "rye-caraway",
+  "kouign-amann",
+  "spelt-batard",
+  "focaccia",
+] as const;
+
+export const PLATES = PLATE_IDS.map((id) => PRODUCTS.find((p) => p.id === id)!);
 
 export const cents = (n: number) => `$${(n / 100).toFixed(2)}`;
 

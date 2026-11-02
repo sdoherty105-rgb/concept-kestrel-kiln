@@ -11,8 +11,7 @@
     "test": "playwright test",
     "contrast": "node scripts/contrast.mjs",
     "cf:build": "opennextjs-cloudflare build",
-    "cf:preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "gen:art": "tsx scripts/gen-art.tsx"
+    "cf:preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview"
   },
   "dependencies": {
     "@opennextjs/cloudflare": "^1.20.13",
