@@ -5,7 +5,7 @@ const ALT: Record<string, string> = {
   "country-sourdough": "A round country sourdough boule with a blistered crust, on a seamless flour-coloured ground.",
   "butter-croissant": "A single butter croissant, laminated and golden, on a seamless flour-coloured ground.",
   "rye-caraway": "A dark oval rye loaf with a split crust, on a seamless flour-coloured ground.",
-  "kouign-amann": "A round laminated pastry with caramelised layers and sugar crystals, on a seamless flour-coloured ground.",
+  "kouign-amann": "A square caramelised kouign-amann with laminated sides, on a seamless flour-coloured ground.",
   "spelt-batard": "An oval seeded spelt loaf, on a seamless flour-coloured ground.",
   focaccia: "A square rosemary and sea salt focaccia, on a seamless flour-coloured ground.",
 };

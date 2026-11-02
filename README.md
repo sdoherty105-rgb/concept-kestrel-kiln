@@ -28,7 +28,7 @@ self-hosted and subset. Prices, times and the order are labelled as demonstratio
 | `/robots.txt` | `Disallow: /` |
 | 404 | Branded not-found page |
 
-Specimen pages at `/bakes/[slug]` are intentionally not in this round.
+`/bakes/[slug]` was not a route on main, and no page links to it. Routes are `/`, `/menu`, `/robots.txt` and the 404.
 
 The order is one shared ledger. Steppers on each plate and on the ledger update a hairline receipt. The form
 validates in the browser, checks that the pickup is after the bakes you chose, and ends in a clear "this was a
