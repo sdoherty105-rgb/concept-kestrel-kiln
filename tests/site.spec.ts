@@ -6,6 +6,7 @@ const PAGES = [
 ];
 
 const CONCEPT_URL = "https://offshiftstudio.com.au/concepts/kestrel-kiln";
+const ENQUIRY_URL = "https://offshiftstudio.com.au/?concept=kestrel-kiln#contact";
 
 for (const { path, h1 } of PAGES) {
   test.describe(`page ${path}`, () => {
@@ -20,12 +21,44 @@ for (const { path, h1 } of PAGES) {
       await expect(page.locator("html")).toHaveAttribute("lang", "en-AU");
     });
 
-    test("shows the OFF/SHIFT concept label linking to the concept page", async ({ page }) => {
+    test("discloses the fictional business and links back to the studio", async ({ page }) => {
       await page.goto(path);
-      const label = page.getByTestId("concept-label").getByRole("link");
-      await expect(label).toBeVisible();
-      await expect(label).toContainText("An OFF/SHIFT concept — fictional demonstration");
-      await expect(label).toHaveAttribute("href", CONCEPT_URL);
+      const strip = page.getByTestId("concept-label");
+      await expect(strip).toContainText("Fictional business — a concept site by OFF/SHIFT Studio");
+      const back = strip.getByRole("link", { name: "Back to the concept" });
+      await expect(back).toBeVisible();
+      await expect(back).toHaveAttribute("href", CONCEPT_URL);
+      const cta = strip.getByRole("link", { name: "Want a website like this?" });
+      await expect(cta).toBeVisible();
+      await expect(cta).toHaveAttribute("href", ENQUIRY_URL);
+      const footer = page.locator("footer");
+      await expect(footer.getByRole("link", { name: "Want a website like this?" })).toHaveAttribute("href", ENQUIRY_URL);
+      await expect(footer.getByRole("link", { name: "Back to the concept" })).toHaveAttribute("href", CONCEPT_URL);
+    });
+
+    test("the disclosure strip stays in view on load (scroll snap does not skip it)", async ({ browser }) => {
+      const ctx = await browser.newContext({ reducedMotion: "no-preference", viewport: { width: 390, height: 844 } });
+      const page = await ctx.newPage();
+      await page.goto(path, { waitUntil: "networkidle" });
+      await page.waitForTimeout(300);
+      expect(await page.evaluate(() => window.scrollY)).toBe(0);
+      await expect(page.getByTestId("concept-label")).toBeInViewport();
+      await ctx.close();
+    });
+
+    test("jump links reach prices, visit and order from the top", async ({ page }) => {
+      await page.goto(path);
+      const nav = page.getByRole("navigation", { name: "Main" });
+      await expect(nav.getByRole("link", { name: "Prices" })).toBeVisible();
+      await expect(nav.getByRole("link", { name: "Visit" })).toBeVisible();
+      await expect(page.getByRole("link", { name: /^(Order|Review pre-order)|Demonstration/ }).first()).toBeVisible();
+    });
+
+    test("nothing overflows sideways at 320 px", async ({ page }) => {
+      await page.setViewportSize({ width: 320, height: 640 });
+      await page.goto(path);
+      const wide = await page.evaluate(() => document.documentElement.scrollWidth);
+      expect(wide).toBeLessThanOrEqual(320);
     });
 
     test("is noindex in meta tag and response header", async ({ page }) => {
@@ -104,6 +137,6 @@ test("robots.txt disallows everything", async ({ request }) => {
 test("hero headline and today's bake are present", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByTestId("today-bake")).toContainText("Country Sourdough");
-  await expect(page.getByRole("button", { name: /Add to Saturday order/ }).first()).toBeVisible();
+  await expect(page.getByRole("button", { name: /Add to order/ }).first()).toBeVisible();
 });
 

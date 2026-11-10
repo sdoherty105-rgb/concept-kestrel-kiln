@@ -40,6 +40,13 @@ export function Plate({ product, index }: { product: Product; index: number }) {
       data-testid="product-card"
     >
       <div className="plate-copy">
+        {first && (
+          <p className="plate-index" data-testid="plate-index">
+            <span>Bakery &amp; cafe, Wattlebrook</span>
+            <a href="#visit">Tue–Sun from 6:30 am</a>
+            <a href="#pre-order">Order by 6 pm for tomorrow</a>
+          </p>
+        )}
         <p className="label">Plate {n}</p>
         <Title id={`name-${product.id}`} className="plate-name">
           {product.name}
