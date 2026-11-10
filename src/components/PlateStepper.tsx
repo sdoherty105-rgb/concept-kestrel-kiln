@@ -11,7 +11,7 @@ export function PlateStepper({ id, name }: { id: string; name: string }) {
   if (!hydrated || qty === 0) {
     const label = (
       <>
-        Add to Saturday order
+        Add to order
         <span className="visually-hidden"> {name}</span>
       </>
     );

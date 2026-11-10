@@ -45,7 +45,7 @@ export default function MenuPage() {
           Price list
         </h1>
         <p className="plate-sentence">
-          Demonstration prices. Bakery items can be added to a Saturday order. Cafe items are made when you visit,
+          Demonstration prices. Bakery items can be added to a pre-order. Cafe items are made when you visit,
           and are not held.
         </p>
         <p className="visit-links">

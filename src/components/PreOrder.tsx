@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import { BAKE_SLOTS, CAFE, PICKUP_DAYS, PRODUCTS, cents } from "@/lib/bakery";
+import { BAKE_SLOTS, CAFE, PICKUP_DAYS, PRODUCTS, cents, clockLabel, dayHours } from "@/lib/bakery";
 import { useHydrated } from "@/lib/useHydrated";
 import { MAX_QTY, useOrder } from "./OrderProvider";
 
@@ -12,6 +12,7 @@ type Placed = {
   total: number;
   day: string;
   slotLabel: string;
+  heldUntil: string;
   name: string;
 };
 
@@ -59,7 +60,10 @@ export function PreOrder() {
     else if (!/^(?:\+?61|0)4\d{8}$/.test(digits)) e.mobile = "Enter an Australian mobile number, for example 0400 000 000.";
     if (email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim()))
       e.email = "Enter an email address like name@example.com, or leave it blank.";
-    if (!e.items && slot) {
+    if (slot && order.day && slot.minutes < dayHours(order.day).opens) {
+      e.slot = `On ${order.day} the bakery opens at ${clockLabel(dayHours(order.day).opens)}. Choose a later pickup time.`;
+    }
+    if (!e.items && slot && !e.slot) {
       const tooEarly = order.lines.filter((l) => {
         const p = PRODUCTS.find((x) => x.id === l.id)!;
         return BAKE_SLOTS[p.slot].minutes > slot.minutes;
@@ -85,6 +89,7 @@ export function PreOrder() {
       total: order.total,
       day: order.day,
       slotLabel: slot!.label,
+      heldUntil: clockLabel(slot!.minutes + CAFE.holdMinutes),
       name: name.trim(),
     });
   };
@@ -111,8 +116,8 @@ export function PreOrder() {
             The order
           </h2>
           <p className="plate-sentence">
-            This form is a demonstration and sends nothing. Orders close {CAFE.preorderCutoff} and are held until{" "}
-            {CAFE.holdUntil}. Pay at the counter.
+            This form is a demonstration and sends nothing. Orders close {CAFE.preorderCutoff}.{" "}
+            {CAFE.holdRule} Pay at the counter.
           </p>
         </div>
 
@@ -138,7 +143,9 @@ export function PreOrder() {
                   </li>
                 ))}
                 <li>
-                  <strong>Pickup: {placed.day}, {placed.slotLabel}</strong>
+                  <strong>
+                    Pickup: {placed.day}, {placed.slotLabel} (held until {placed.heldUntil})
+                  </strong>
                   <strong>{cents(placed.total)}</strong>
                 </li>
               </ul>
@@ -293,7 +300,9 @@ export function PreOrder() {
                       {errors.slot}
                     </p>
                   )}
-                  <p className="hint">Times match the bake schedule above, so everything is at its best.</p>
+                  <p className="hint">
+                    Times match the bake schedule above. {CAFE.holdRule} Sunday opens at 7:00 am.
+                  </p>
                 </div>
               </fieldset>
 
@@ -414,6 +423,12 @@ export function PreOrder() {
                   <dt>Pickup</dt>
                   <dd>{order.day || slot ? `${order.day || "Day?"}, ${slot?.label ?? "Time?"}` : "Choose a day and time"}</dd>
                 </div>
+                {slot && (
+                  <div>
+                    <dt>Held until</dt>
+                    <dd data-testid="ticket-held">{clockLabel(slot.minutes + CAFE.holdMinutes)}</dd>
+                  </div>
+                )}
                 <div>
                   <dt>Total, pay at pickup</dt>
                   <dd className="total" data-testid="ticket-total">

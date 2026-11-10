@@ -4,6 +4,9 @@ export const SITE = {
   conceptUrl: "https://offshiftstudio.com.au/concepts/kestrel-kiln",
   studioUrl: "https://offshiftstudio.com.au",
   conceptLabel: "An OFF/SHIFT concept — fictional demonstration",
+  /** The studio enquiry form, tagged with this concept. */
+  enquiryUrl: "https://offshiftstudio.com.au/?concept=kestrel-kiln#contact",
+  disclosure: "Fictional business — a concept site by OFF/SHIFT Studio",
   description:
     "Kestrel & Kiln is a fictional artisan bakery and cafe in Wattlebrook, Perth: slow-fermented sourdough, laminated pastry and a daily bake schedule. A concept website by OFF/SHIFT Studio.",
 };
@@ -14,7 +17,9 @@ export const CAFE = {
   phoneHref: "+61855500142",
   email: "hello@kestrel-kiln.example",
   preorderCutoff: "6 pm the evening before",
-  holdUntil: "10 am",
+  /** One rule everywhere: a bag waits one hour past the pickup time chosen, then goes on the counter. */
+  holdMinutes: 60,
+  holdRule: "Your bag is held for an hour after the pickup time you choose.",
 };
 
 export type ArtKind =
@@ -215,6 +220,18 @@ export const PLATE_IDS = [
 ] as const;
 
 export const PLATES = PLATE_IDS.map((id) => PRODUCTS.find((p) => p.id === id)!);
+
+/** "12:00 pm" style label for minutes after midnight. */
+export function clockLabel(minutes: number) {
+  const h = Math.floor(minutes / 60);
+  const m = minutes % 60;
+  const h12 = h % 12 === 0 ? 12 : h % 12;
+  return `${h12}:${String(m).padStart(2, "0")} ${h < 12 ? "am" : "pm"}`;
+}
+
+/** Opening minutes for a pickup day name; Sunday opens later and closes earlier. */
+export const dayHours = (day: string) =>
+  day === "Sunday" ? { opens: 7 * 60, closes: 14 * 60 } : { opens: 6 * 60 + 30, closes: 15 * 60 };
 
 export const cents = (n: number) => `$${(n / 100).toFixed(2)}`;
 

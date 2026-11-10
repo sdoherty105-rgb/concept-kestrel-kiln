@@ -219,7 +219,7 @@ export function BakeSchedule() {
           <ul>
             <li>Order up to {CAFE.preorderCutoff}.</li>
             <li>Pick a time at or after the bake you want.</li>
-            <li>The bag is held until {CAFE.holdUntil}, then goes on the counter.</li>
+            <li>{CAFE.holdRule} Then it goes on the counter.</li>
             <li>Pay at pickup. Closed Mondays. Demonstration only.</li>
           </ul>
         </li>
