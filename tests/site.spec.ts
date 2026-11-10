@@ -86,12 +86,11 @@ for (const { path, h1 } of PAGES) {
       expect(loaded.join(" ")).toMatch(/Hanken Grotesk/);
     });
 
-    test("loads nothing from other origins (no trackers, no external fonts)", async ({ page }) => {
+    test("loads nothing from other origins (no trackers, no external fonts)", async ({ page, baseURL }) => {
       const external: string[] = [];
+      const own = new URL(baseURL!).origin;
       page.on("request", (r) => {
-        const u = new URL(r.url());
-        if (u.origin !== new URL(page.url() === "about:blank" ? "http://localhost:3100" : page.url()).origin && !r.url().startsWith("data:"))
-          external.push(r.url());
+        if (!r.url().startsWith("data:") && new URL(r.url()).origin !== own) external.push(r.url());
       });
       await page.goto(path, { waitUntil: "networkidle" });
       expect(external).toEqual([]);
