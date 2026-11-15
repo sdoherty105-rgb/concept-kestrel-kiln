@@ -36,7 +36,7 @@ test("bake clock: product names sit in the wide column, not the 9rem time column
   }
 });
 
-test("plate photos meet the flour ground at every edge (K2)", async ({ page }) => {
+test("plate photos meet the flour ground at every edge, all six plates (K2, K3)", async ({ page }) => {
   await page.goto("/");
   const imgs = page.locator(".plate-photo img");
   const n = await imgs.count();
@@ -68,10 +68,8 @@ test("plate photos meet the flour ground at every edge (K2)", async ({ page }) =
       }
       return { src: el.currentSrc.split("/").pop(), max };
     });
-    // Only the three regraded plates are held to the strict edge; the others were graded earlier.
-    if (/rye-caraway|kouign-amann|spelt-batard/.test(worst.src ?? "")) {
-      expect(worst.max, `${worst.src} edge vs flour`).toBeLessThanOrEqual(4);
-    }
+    // Every plate meets flour at the frame edge: below 900px the whole frame shows (contain).
+    expect(worst.max, `${worst.src} edge vs flour`).toBeLessThanOrEqual(4);
   }
 });
 
