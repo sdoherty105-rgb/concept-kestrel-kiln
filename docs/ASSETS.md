@@ -16,7 +16,7 @@ The kouign-amann was regenerated the same day. The first frame read as a round s
 
 | File | Subject | Bytes, 800 / 1200 | Licence |
 | --- | --- | --- | --- |
-| `public/bakes/country-sourdough-*.avif` | Round country sourdough boule. Paper regraded to exact flour `#F5F2EB` so the frame has no pale edge. | 41,726 / 65,789 | Original generated work for this concept |
+| `public/bakes/country-sourdough-*.avif` | Round country sourdough boule. Paper regraded to flour `#F5F2EB`. The 800-wide file is the mobile LCP image and is encoded smaller than the other plates. | 19,057 / 35,855 | Original generated work for this concept |
 | `public/bakes/butter-croissant-*.avif` | Single butter croissant | 24,608 / 41,954 | Original generated work for this concept |
 | `public/bakes/rye-caraway-*.avif` | Dark rye loaf | 32,993 / 53,771 | Original generated work for this concept |
 | `public/bakes/kouign-amann-*.avif` | Square caramelised kouign-amann | 33,503 / 55,595 | Original generated work for this concept |

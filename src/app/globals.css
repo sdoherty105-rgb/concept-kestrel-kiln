@@ -1259,8 +1259,13 @@ textarea.input {
   }
 }
 
+.plate:not(.plate-first) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 100svh;
+}
+
 @media (prefers-reduced-motion: no-preference) {
-  .plate-copy {
+  .plate:not(.plate-first) .plate-copy {
     animation: rise 500ms ease-out both;
   }
 
