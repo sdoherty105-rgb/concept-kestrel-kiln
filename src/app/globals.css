@@ -591,6 +591,8 @@ button:disabled {
 .slot-items {
   display: grid;
   gap: 2px;
+  grid-column: 2;
+  max-width: 40ch;
 }
 
 .slot-items li {
@@ -1115,6 +1117,7 @@ textarea.input {
 }
 
 .site-footer {
+  scroll-snap-align: end;
   padding: 28px 20px 88px;
   display: grid;
   gap: 12px;
@@ -1215,7 +1218,8 @@ textarea.input {
     max-height: none;
     margin: 0;
     aspect-ratio: auto;
-    object-fit: cover;
+    object-fit: contain;
+    background: var(--flour);
   }
 
   .plate-copy {
@@ -1231,6 +1235,11 @@ textarea.input {
   .field-row,
   .slot {
     grid-template-columns: 1fr;
+  }
+
+  .slot-items {
+    grid-column: 1 / -1;
+    max-width: none;
   }
 
   .price-row {

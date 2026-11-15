@@ -18,10 +18,12 @@ The kouign-amann was regenerated the same day. The first frame read as a round s
 | --- | --- | --- | --- |
 | `public/bakes/country-sourdough-*.avif` | Round country sourdough boule. Paper regraded to flour `#F5F2EB`. The 800-wide file is the mobile LCP image and is encoded smaller than the other plates. | 19,057 / 35,855 | Original generated work for this concept |
 | `public/bakes/butter-croissant-*.avif` | Single butter croissant | 24,608 / 41,954 | Original generated work for this concept |
-| `public/bakes/rye-caraway-*.avif` | Dark rye loaf | 32,993 / 53,771 | Original generated work for this concept |
-| `public/bakes/kouign-amann-*.avif` | Square caramelised kouign-amann | 33,503 / 55,595 | Original generated work for this concept |
-| `public/bakes/spelt-batard-*.avif` | Seeded spelt batard | 32,856 / 54,023 | Original generated work for this concept |
+| `public/bakes/rye-caraway-*.avif` | Dark rye loaf. Shadow rebuilt 15 Nov 2026 (see below). | 32,735 / 52,666 | Original generated work for this concept |
+| `public/bakes/kouign-amann-*.avif` | Square caramelised kouign-amann. Shadow rebuilt 15 Nov 2026 (see below). | 33,543 / 54,420 | Original generated work for this concept |
+| `public/bakes/spelt-batard-*.avif` | Seeded spelt batard. Shadow rebuilt 15 Nov 2026 (see below). | 31,256 / 52,752 | Original generated work for this concept |
 | `public/bakes/focaccia-*.avif` | Rosemary and sea salt focaccia | 31,318 / 52,867 | Original generated work for this concept |
+
+**Shadow regrade, 15 Nov 2026 (issue #84, finding K2).** On the rye, kouign-amann and spelt plates, the first grade left a stair-stepped patch of un-relit warm shadow under each bake, and the cast shadow ran off the right edge of the frame. At 1440 that showed as a hard rectangle against the page. The original generated masters were not available, so these three were regraded from their committed 1200-wide AVIFs. The bake pixels are kept as they were. The paper is rebuilt as flour `#F5F2EB` multiplied by the photographed shading, smoothed so the old contour disappears, warmed slightly as it deepens to match the photographed shadow, and tapered with distance from the bake. It fades to flour before every edge the page can show: the frame edges and the 1440 crops (rye y 114 to 1329, kouign y 126 to 1326, measured on the 1200 master). Every edge pixel is now within 1 of flour (it was up to 115). Both sizes were encoded from the regraded master with `sharp` AVIF, 4:4:4 chroma, effort 9 and quality 54, which keeps each file within a few percent of its previous size.
 
 The first plate preloads the country sourdough pair (`800` and `1200` wide). Other plates load lazily. No WebP or JPEG is shipped.
 
