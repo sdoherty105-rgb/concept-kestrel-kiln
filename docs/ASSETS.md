@@ -33,9 +33,9 @@ The first plate preloads the country sourdough pair (`800` and `1200` wide). Oth
 
 | Asset | Where | Source | Licence |
 | --- | --- | --- | --- |
-| Caveat Brush (headings, the chalkboard) | `src/fonts/CaveatBrush.woff2` (copied to `public/fonts/` at build) | Impallari Type, via the Fontsource package `@fontsource/caveat-brush` (Latin subset) | SIL Open Font License 1.1 (`src/fonts/OFL-CaveatBrush.txt`) |
-| Bitter, weight axis 100–900 (body text) | `src/fonts/Bitter.woff2` | The Bitter Project Authors, via `@fontsource-variable/bitter` (Latin subset) | SIL Open Font License 1.1 (`src/fonts/OFL-Bitter.txt`) |
-| Special Elite (order tickets and time stamps) | `src/fonts/SpecialElite.woff2` | Astigmatic, via `@fontsource/special-elite` (Latin subset) | Apache License 2.0 (`src/fonts/LICENSE-SpecialElite.txt`) |
+| Caveat Brush (headings, the chalkboard) | `src/fonts/CaveatBrush.woff2` (copied to `public/fonts/` at build) | Impallari Type, via the Fontsource package `@fontsource/caveat-brush` (Latin subset, trimmed to the characters the site uses) | SIL Open Font License 1.1 (`src/fonts/OFL-CaveatBrush.txt`) |
+| Bitter, weight axis 100–900 (body text) | `src/fonts/Bitter.woff2` | The Bitter Project Authors, via `@fontsource-variable/bitter` (Latin subset, trimmed to the characters the site uses) | SIL Open Font License 1.1 (`src/fonts/OFL-Bitter.txt`) |
+| Special Elite (order tickets and time stamps) | `src/fonts/SpecialElite.woff2` | Astigmatic, via `@fontsource/special-elite` (Latin subset, trimmed to the characters the site uses) | Apache License 2.0 (`src/fonts/LICENSE-SpecialElite.txt`) |
 
 Three families. `@font-face` lives in `src/app/globals.css`. The site does not request Google Fonts or any other third-party origin.
 
