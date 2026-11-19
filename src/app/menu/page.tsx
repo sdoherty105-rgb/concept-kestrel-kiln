@@ -26,7 +26,6 @@ function PriceRows({ category }: { category: "loaf" | "pastry" }) {
       {PRODUCTS.filter((p) => p.category === category).map((p) => (
         <li className="price-row" key={p.id} data-testid="menu-item">
           <span className="price-name">{p.name}</span>
-          <span className="leader" aria-hidden="true" />
           <span className="price-meta nums">Out {BAKE_SLOTS[p.slot].label}</span>
           <span className="price-figure nums">{cents(p.price)}</span>
           <AddToOrder id={p.id} name={p.name} compact />
@@ -80,8 +79,7 @@ export default function MenuPage() {
                 {item.name}
                 <span className="price-sub">{item.sub}</span>
               </span>
-              <span className="leader" aria-hidden="true" />
-              <span className="price-figure nums">{item.price}</span>
+                  <span className="price-figure nums">{item.price}</span>
             </li>
           ))}
         </ul>

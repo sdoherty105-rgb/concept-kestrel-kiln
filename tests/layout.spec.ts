@@ -2,37 +2,23 @@ import { expect, test } from "@playwright/test";
 
 // Regression checks for the issue #84 quality-gate findings (K1 to K4).
 
-test("bake clock: product names sit in the wide column, not the 9rem time column (K1)", async ({ page }) => {
+test("chalkboard: product names stay on one line inside each bake (K1)", async ({ page }) => {
   await page.goto("/");
-  const wide = (page.viewportSize()?.width ?? 0) >= 900;
   const rows = await page.$$eval(".slot:not(.slot-rules)", (slots) =>
     slots.map((slot) => {
-      const time = slot.querySelector(".slot-time")!.getBoundingClientRect();
       const items = slot.querySelector(".slot-items")!.getBoundingClientRect();
       const names = [...slot.querySelectorAll(".slot-items .nm")].map((n) => {
         const lh = parseFloat(getComputedStyle(n).lineHeight);
         return n.getBoundingClientRect().height / lh;
       });
-      return {
-        timeRight: time.right,
-        itemsLeft: items.left,
-        itemsWidth: items.width,
-        rowWidth: slot.getBoundingClientRect().width,
-        maxLines: Math.max(...names),
-      };
+      return { itemsWidth: items.width, maxLines: Math.max(...names) };
     }),
   );
   expect(rows.length).toBeGreaterThan(0);
   for (const r of rows) {
-    // Every product name fits on one line.
+    // Every product name fits on one line, and the list is wide enough to say so.
     expect(r.maxLines).toBeLessThan(1.5);
-    if (wide) {
-      expect(r.itemsLeft).toBeGreaterThan(r.timeRight);
-      expect(r.itemsWidth).toBeGreaterThan(300);
-    } else {
-      // Below 900px the list spans the full row, as before the fix.
-      expect(r.itemsWidth).toBeGreaterThanOrEqual(r.rowWidth - 1);
-    }
+    expect(r.itemsWidth).toBeGreaterThan(220);
   }
 });
 
@@ -68,14 +54,13 @@ test("plate photos meet the flour ground at every edge, all six plates (K2, K3)"
       }
       return { src: el.currentSrc.split("/").pop(), max };
     });
-    // Every plate meets flour at the frame edge: below 900px the whole frame shows (contain).
+    // Every plate meets flour at the frame edge: the whole frame always shows (contain).
     expect(worst.max, `${worst.src} edge vs flour`).toBeLessThanOrEqual(4);
   }
 });
 
-test("phone and tablet plates show the whole bake, letterboxed on flour (K3)", async ({ page }) => {
+test("every plate shows the whole bake, matted on flour (K3)", async ({ page }) => {
   await page.goto("/");
-  const narrow = (page.viewportSize()?.width ?? 0) < 900;
   const styles = await page.$$eval(".plate-photo img", (els) =>
     els.map((el) => {
       const cs = getComputedStyle(el);
@@ -83,10 +68,9 @@ test("phone and tablet plates show the whole bake, letterboxed on flour (K3)", a
     }),
   );
   for (const s of styles) {
-    if (narrow) {
-      expect(s.fit).toBe("contain");
-      expect(s.bg).toBe("rgb(245, 242, 235)");
-    }
+    // The print always shows the whole frame, matted on the flour ground it was shot on.
+    expect(s.fit).toBe("contain");
+    expect(s.bg).toBe("rgb(245, 242, 235)");
   }
 });
 

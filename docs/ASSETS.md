@@ -33,15 +33,17 @@ The first plate preloads the country sourdough pair (`800` and `1200` wide). Oth
 
 | Asset | Where | Source | Licence |
 | --- | --- | --- | --- |
-| Hanken Grotesk, weight axis 200–500, Latin subset | `src/fonts/HankenGrotesk.woff2` (copied to `public/fonts/` at build) | The Hanken Grotesk Project Authors, https://github.com/marcologous/hanken-grotesk. Latin variable file from Fontsource (`hanken-grotesk:vf@5.2.8`), then subset with `scripts/subset-fonts.py`. | SIL Open Font License 1.1 (`src/fonts/OFL-HankenGrotesk.txt`) |
+| Caveat Brush (headings, the chalkboard) | `src/fonts/CaveatBrush.woff2` (copied to `public/fonts/` at build) | Impallari Type, via the Fontsource package `@fontsource/caveat-brush` (Latin subset) | SIL Open Font License 1.1 (`src/fonts/OFL-CaveatBrush.txt`) |
+| Bitter, weight axis 100–900 (body text) | `src/fonts/Bitter.woff2` | The Bitter Project Authors, via `@fontsource-variable/bitter` (Latin subset) | SIL Open Font License 1.1 (`src/fonts/OFL-Bitter.txt`) |
+| Special Elite (order tickets and time stamps) | `src/fonts/SpecialElite.woff2` | Astigmatic, via `@fontsource/special-elite` (Latin subset) | Apache License 2.0 (`src/fonts/LICENSE-SpecialElite.txt`) |
 
-One family only. `@font-face` lives in `src/app/globals.css`. The site does not request Google Fonts or any other third-party origin.
+Three families. `@font-face` lives in `src/app/globals.css`. The site does not request Google Fonts or any other third-party origin.
 
 ## Other
 
 | Asset | Where | Source | Licence |
 | --- | --- | --- | --- |
-| Favicon | `src/app/icon.svg` | Drawn for this concept: a flour square and a single ember needle. No radius. | Original work |
+| Favicon | `src/app/icon.svg` | Drawn for this concept: a flour square and a single ember needle. | Original work |
 
 Fraunces, DM Sans, the soft SVG loaves and the generated sprite were removed in this redesign.
 
@@ -56,6 +58,6 @@ All business details are invented: the name Kestrel & Kiln, the suburb of Wattle
 | Flour | `#F5F2EB` | Page ground |
 | Crust ink | `#1A1815` | Text and hairlines |
 | Ash | `#6B655B` | Secondary text |
-| Kiln ember | `#B3431F` | The only accent: live dot, focus, order action |
+| Kiln ember | `#9B3412` | The only accent: live dot, focus, order action |
 
 Run `npm run contrast -- --strict` for the pairs. Ink, ash and ember each clear 4.5:1 on flour.

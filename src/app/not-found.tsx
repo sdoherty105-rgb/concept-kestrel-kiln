@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function NotFound() {
   return (
     <section className="visit-plate" aria-labelledby="nf-title">
-      <p className="label">404</p>
+      <p className="label">Page not found</p>
       <h1 id="nf-title" className="plate-name">
         Nothing in this oven.
       </h1>

@@ -111,7 +111,7 @@ export function PreOrder() {
     <section id="pre-order" className="ledger-plate" data-layout="order-ledger" aria-labelledby="order-title">
       <div className="ledger-copy">
         <div className="section-head">
-          <p className="label">Order ledger</p>
+          <p className="label">Pre-order</p>
           <h2 id="order-title" className="plate-name">
             The order
           </h2>
@@ -192,7 +192,7 @@ export function PreOrder() {
 
               <fieldset className="fieldset" id="order-items" aria-describedby={err("items")}>
                 <legend>
-                  <span className="legend-n" aria-hidden="true">1</span> Choose your bakes
+                  Choose your bakes
                 </legend>
                 {errors.items && (
                   <p className="err" id={err("items")} style={{ marginBottom: 14 }}>
@@ -247,7 +247,7 @@ export function PreOrder() {
 
               <fieldset className="fieldset">
                 <legend>
-                  <span className="legend-n" aria-hidden="true">2</span> Pickup day and time
+                  Pickup day and time
                 </legend>
                 <div className="field">
                   <label htmlFor="pickup-day">
@@ -308,7 +308,7 @@ export function PreOrder() {
 
               <fieldset className="fieldset">
                 <legend>
-                  <span className="legend-n" aria-hidden="true">3</span> Your details
+                  Your details
                 </legend>
                 <div className="field">
                   <label htmlFor="cust-name">

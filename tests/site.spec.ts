@@ -83,7 +83,7 @@ for (const { path, h1 } of PAGES) {
       await page.waitForSelector("html.fonts-body");
       await page.evaluate(() => document.fonts.ready);
       const loaded = await page.evaluate(() => [...document.fonts].filter((f) => f.status === "loaded").map((f) => f.family));
-      expect(loaded.join(" ")).toMatch(/Hanken Grotesk/);
+      expect(loaded.join(" ")).toMatch(/Bitter/);
     });
 
     test("loads nothing from other origins (no trackers, no external fonts)", async ({ page, baseURL }) => {

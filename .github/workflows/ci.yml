@@ -26,7 +26,7 @@ jobs:
       - name: Type check
         run: npm run lint
       - name: Font subset is present
-        run: test -s src/fonts/HankenGrotesk.woff2
+        run: test -s src/fonts/Bitter.woff2 && test -s src/fonts/CaveatBrush.woff2 && test -s src/fonts/SpecialElite.woff2
       - name: Colour contrast of the palette pairs
         run: npm run contrast -- --strict
       - name: Build

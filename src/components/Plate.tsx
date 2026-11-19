@@ -1,7 +1,7 @@
 import { BAKE_SLOTS, cents, type Product } from "@/lib/bakery";
 import { PlateStepper } from "./PlateStepper";
 
-/** Different crop, scale and side so the sequence is not six copies of one frame. */
+/** Which side the print hangs on, and how it is tilted, so the sequence is not six copies of one frame. */
 const FRAMES = [
   { side: "right", scale: "large", crop: "low" },
   { side: "right", scale: "small", crop: "high" },
@@ -22,7 +22,6 @@ const ALT: Record<string, string> = {
 
 export function Plate({ product, index }: { product: Product; index: number }) {
   const slot = BAKE_SLOTS[product.slot];
-  const n = String(index + 1).padStart(2, "0");
   const first = index === 0;
   const frame = FRAMES[index] ?? FRAMES[0];
   const Title = first ? "h1" : "h2";
@@ -47,35 +46,17 @@ export function Plate({ product, index }: { product: Product; index: number }) {
             <a href="#pre-order">Order by 6 pm for tomorrow</a>
           </p>
         )}
-        <p className="label">Plate {n}</p>
         <Title id={`name-${product.id}`} className="plate-name">
           {product.name}
         </Title>
         <p className="plate-sentence">{product.blurb}</p>
-        <dl className="spec">
-          <div>
-            <dt>Flour</dt>
-            <span className="leader" aria-hidden="true" />
-            <dd>{product.spec.flour}</dd>
-          </div>
-          <div>
-            <dt>Hydration</dt>
-            <span className="leader" aria-hidden="true" />
-            <dd className="nums">{product.spec.hydration}</dd>
-          </div>
-          <div>
-            <dt>Ferment</dt>
-            <span className="leader" aria-hidden="true" />
-            <dd className="nums">{product.spec.ferment}</dd>
-          </div>
-          <div>
-            <dt>Out of the oven</dt>
-            <span className="leader" aria-hidden="true" />
-            <dd className="nums">{slot.label}</dd>
-          </div>
-        </dl>
+        <p className="plate-recipe">
+          Made with {product.spec.flour.toLowerCase()}, {product.spec.hydration} hydration and{" "}
+          {product.spec.ferment.replace(/ h$/, " hours")} of slow ferment.
+        </p>
+        <p className="stamp">Out of the oven at {slot.label}</p>
         <PlateStepper id={product.id} name={product.name} />
-        <p className="label demo-line">
+        <p className="demo-line">
           Demonstration price <span className="nums">{cents(product.price)}</span>
         </p>
       </div>
