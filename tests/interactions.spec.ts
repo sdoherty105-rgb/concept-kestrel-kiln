@@ -40,7 +40,7 @@ test.describe("pre-order flow (demo)", () => {
   test("adding items updates the ticket and the floating order bar", async ({ page }) => {
     await page.goto("/");
     const card = page.getByTestId("product-card").first();
-    await card.getByRole("button", { name: /Add Country Sourdough to pre-order/ }).click();
+    await card.getByRole("button", { name: /Add to order/ }).click();
     await card.getByRole("button", { name: "Add one more Country Sourdough" }).click();
     await expect(page.getByTestId("ticket-total")).toHaveText("$19.00");
     await expect(page.getByTestId("order-bar")).toContainText("2 items");
@@ -72,7 +72,7 @@ test.describe("pre-order flow (demo)", () => {
     const success = page.getByTestId("order-success");
     await expect(success).toBeVisible();
     await expect(success).toContainText("This was a demo, so nothing was sent");
-    await expect(success).toContainText("Saturday, 8:00 am");
+    await expect(success).toContainText("Saturday, 8:00 am (held until 9:00 am)");
     await expect(success.getByText("Demo only")).toBeVisible();
   });
 
@@ -122,6 +122,28 @@ test.describe("pre-order flow (demo)", () => {
     expect(after.length).toBe(baseline);
     expect(page.url()).not.toContain("?");
   });
+});
+
+test("one hold rule everywhere, and the latest pickup is still held before closing", async ({ page }) => {
+  await page.goto("/");
+  const rule = "Your bag is held for an hour after the pickup time you choose.";
+  await expect(page.locator("#oven")).toContainText(rule);
+  await expect(page.locator("#pre-order .section-head")).toContainText(rule);
+  await expect(page.locator("body")).not.toContainText(/held until 10/);
+  await page.locator('input[name="pickup-slot"][value="1200"]').check({ force: true });
+  await expect(page.getByTestId("ticket-held")).toHaveText("1:00 pm");
+});
+
+test("a Sunday pickup cannot be before the 7:00 am opening", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "Add one Country Sourdough" }).click();
+  await page.getByLabel(/^Day/).selectOption("Sunday");
+  await page.locator('input[name="pickup-slot"][value="0630"]').check({ force: true });
+  await page.getByLabel(/Name for the bag/).fill("Sam");
+  await page.getByLabel(/^Mobile/).fill("0400 000 000");
+  await page.getByRole("button", { name: "Place demo pre-order" }).click();
+  await expect(page.getByText(/On Sunday the bakery opens at 7:00 am/).first()).toBeVisible();
+  await expect(page.getByTestId("order-success")).toHaveCount(0);
 });
 
 test("cafe hours and open status render", async ({ page }) => {

@@ -2,22 +2,16 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <section className="page-hero" aria-labelledby="nf-title">
-      <div className="wrap">
-        <span className="eyebrow">404</span>
-        <h1 id="nf-title">
-          Nothing in <em>this oven.</em>
-        </h1>
-        <p className="lede">That page has gone stale, or never made it out of the kiln. Try the bakes instead.</p>
-        <div className="cta-row" style={{ marginTop: 28 }}>
-          <Link href="/" className="btn">
-            Back to the bakery
-          </Link>
-          <Link href="/menu" className="btn btn-ghost">
-            See the menu
-          </Link>
-        </div>
-      </div>
+    <section className="visit-plate" aria-labelledby="nf-title">
+      <p className="label">Page not found</p>
+      <h1 id="nf-title" className="plate-name">
+        Nothing in this oven.
+      </h1>
+      <p className="plate-sentence">That page was never on the bake list.</p>
+      <p className="visit-links">
+        <Link href="/">Back to the counter</Link>
+        <Link href="/menu">Price list</Link>
+      </p>
     </section>
   );
 }

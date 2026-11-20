@@ -1,21 +1,21 @@
 @font-face {
-  font-family: "Fraunces";
-  src: url("/fonts/Fraunces-opsz.woff2") format("woff2");
-  font-weight: 400 600;
+  font-family: "Caveat Brush";
+  src: url("/fonts/CaveatBrush.woff2") format("woff2");
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Fraunces";
-  src: url("/fonts/Fraunces-italic.woff2") format("woff2");
-  font-weight: 420;
-  font-style: italic;
+  font-family: "Bitter";
+  src: url("/fonts/Bitter.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "DM Sans";
-  src: url("/fonts/DMSans.woff2") format("woff2");
-  font-weight: 400 700;
+  font-family: "Special Elite";
+  src: url("/fonts/SpecialElite.woff2") format("woff2");
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
