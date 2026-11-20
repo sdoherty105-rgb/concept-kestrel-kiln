@@ -10,7 +10,7 @@ Every bake was generated from the same sheet, then graded so the paper ground si
 
 > Photorealistic studio still life of one single bake, occupying about 70 percent of the frame. Seamless matte paper background in warm off-white flour tone. One soft key light from camera left at 45 degrees, shadow falling gently to the right. No plate, linen, board, crumbs, utensils, hands, faces, text, logo or watermark. Neutral grade.
 
-Each later still used the country sourdough frame as the reference so the light and ground stay in one family. Generation date: 2 November 2026, via the Cursor image tool. Crops are 4:5. Paper pixels connected to the frame edge were relit onto `#F5F2EB` with a small Node script using `sharp`, so the page ground and the photograph share one colour. Shadows stay soft. The graded masters are not committed; the delivery files are the AVIF derivatives.
+Each later still used the country sourdough frame as the reference so the light and ground stay in one family. Generation date: 2 November 2026, via an AI image tool. Crops are 4:5. Paper pixels connected to the frame edge were relit onto `#F5F2EB` with a small Node script using `sharp`, so the page ground and the photograph share one colour. Shadows stay soft. The graded masters are not committed; the delivery files are the AVIF derivatives.
 
 The kouign-amann was regenerated the same day. The first frame read as a round spiral. The replacement is one square pastry with caramelised sides and a laminated edge, shot to the same prompt and reference.
 
