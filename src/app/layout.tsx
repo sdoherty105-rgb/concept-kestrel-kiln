@@ -5,15 +5,12 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { OrderProvider } from "@/components/OrderProvider";
 import { OrderBar } from "@/components/OrderBar";
-import { Reveal } from "@/components/Reveal";
-import { ART } from "@/generated/art";
 import "./globals.css";
-import "./bakery.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://kestrel-kiln.offshiftstudio.com.au"),
   title: {
-    default: "Kestrel & Kiln — slow-baked bread and pastry, Wattlebrook (concept)",
+    default: "Kestrel & Kiln — one bake at a time, Wattlebrook (concept)",
     template: "%s | Kestrel & Kiln (concept)",
   },
   description: SITE.description,
@@ -31,7 +28,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#27221E",
+  themeColor: "#F2E2C0",
   width: "device-width",
   initialScale: 1,
 };
@@ -40,29 +37,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-AU">
       <head>
-        <link rel="preload" href="/fonts/Fraunces-opsz.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/CaveatBrush.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
       <body>
         <a href="#main" className="skip-link">
           Skip to content
         </a>
         <ConceptBar />
-        <Header />
         <OrderProvider>
-          <main id="main" tabIndex={-1}>
+          <Header />
+          <main id="main" tabIndex={-1} data-unit="plate">
             {children}
           </main>
           <OrderBar />
-          <Reveal />
         </OrderProvider>
         <Footer />
-        <div
-          style={{ position: "absolute", width: 0, height: 0, overflow: "hidden" }}
-          aria-hidden="true"
-          dangerouslySetInnerHTML={{ __html: ART.sprite }}
-        />
       </body>
     </html>
   );
 }
-

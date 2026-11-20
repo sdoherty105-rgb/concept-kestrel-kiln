@@ -13,9 +13,7 @@ export function AddToOrder({ id, name, compact = false }: { id: string; name: st
   if (!hydrated) {
     return (
       <Link href="/#pre-order" className={cls}>
-        <span>
-          Pre-order<span className="visually-hidden"> {name}</span>
-        </span>
+        Add<span className="visually-hidden"> {name}</span>
       </Link>
     );
   }
@@ -23,9 +21,7 @@ export function AddToOrder({ id, name, compact = false }: { id: string; name: st
   if (qty === 0) {
     return (
       <button type="button" className={cls} onClick={() => addItem(id)}>
-        <span>
-          Add<span className="visually-hidden"> {name}</span> to pre-order
-        </span>
+        Add<span className="visually-hidden"> {name}</span>
       </button>
     );
   }

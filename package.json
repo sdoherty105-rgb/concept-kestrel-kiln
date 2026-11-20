@@ -2,7 +2,7 @@
   "name": "concept-kestrel-kiln",
   "version": "0.1.0",
   "private": true,
-  "description": "Kestrel & Kiln — a fictional artisan bakery concept by OFF/SHIFT Studio.",
+  "description": "Kestrel & Kiln \u2014 a fictional artisan bakery concept by OFF/SHIFT Studio.",
   "scripts": {
     "dev": "next dev",
     "build": "mkdir -p public/fonts && cp src/fonts/*.woff2 public/fonts/ && next build",
@@ -12,7 +12,7 @@
     "contrast": "node scripts/contrast.mjs",
     "cf:build": "opennextjs-cloudflare build",
     "cf:preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "gen:art": "tsx scripts/gen-art.tsx"
+    "qa": "npm run lint && npm run contrast -- --strict && npm run build && npm test"
   },
   "dependencies": {
     "@opennextjs/cloudflare": "^1.20.13",
@@ -34,5 +34,12 @@
     "tsx": "^4.23.15",
     "typescript": "^7.0.2",
     "wrangler": "^4.152.0"
-  }
+  },
+  "browserslist": [
+    "chrome >= 111",
+    "edge >= 111",
+    "firefox >= 111",
+    "safari >= 16.4",
+    "ios_saf >= 16.4"
+  ]
 }

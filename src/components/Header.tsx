@@ -1,38 +1,25 @@
 import Link from "next/link";
-import { KestrelMark } from "./Illustrations";
-import { NavMobile } from "./NavMobile";
+import { OrderCount } from "./OrderCount";
 
-const LINKS = [
-  { href: "/#bakes", label: "Bakes" },
-  { href: "/#oven", label: "In the oven" },
-  { href: "/#process", label: "Process" },
-  { href: "/#cafe", label: "Cafe" },
-  { href: "/menu", label: "Full menu" },
-];
-
+/** Jump links reach the price list, the visit and the order without scrolling through six plates. */
 export function Header() {
   return (
-    <header className="site-header">
-      <div className="wrap">
-        <Link href="/" className="brand" aria-label="Kestrel & Kiln, home">
-          <KestrelMark />
-          <span>Kestrel &amp; Kiln</span>
+    <header className="site-header" data-nav="grid-links">
+      <div className="bar">
+        <Link href="/" className="brand">
+          Kestrel &amp; Kiln
         </Link>
-
-        <nav className="nav-desktop" aria-label="Main">
-          {LINKS.map((l) => (
-            <Link key={l.href} href={l.href}>
-              {l.label}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="header-actions">
-          <Link href="/#pre-order" className="btn btn-sm">
-            Pre-order
+        <nav aria-label="Main">
+          <Link href="/#oven" className="nav-wide">
+            Bake times
           </Link>
-          <NavMobile />
-        </div>
+          <Link href="/menu">Prices</Link>
+          <Link href="/#visit">Visit</Link>
+          <Link href="/#pre-order" className="nav-wide">
+            Order
+            <OrderCount />
+          </Link>
+        </nav>
       </div>
     </header>
   );
