@@ -92,7 +92,7 @@ test("keyboard: footer links stay in view with scroll snap on (K4)", async ({ br
     const r = await page.evaluate(() => {
       const el = document.activeElement as HTMLElement;
       const b = el.getBoundingClientRect();
-      return { name: el.textContent?.trim() ?? "", top: b.top, bottom: b.bottom, vh: window.innerHeight };
+      return { name: el.textContent?.trim() || el.querySelector("img")?.getAttribute("alt") || "", top: b.top, bottom: b.bottom, vh: window.innerHeight };
     });
     expect(r.top, `${r.name} top`).toBeGreaterThanOrEqual(0);
     expect(r.bottom, `${r.name} bottom`).toBeLessThanOrEqual(r.vh);

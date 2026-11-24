@@ -1,3 +1,6 @@
+import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { expect, test } from "@playwright/test";
 
 const PAGES = [
@@ -24,7 +27,7 @@ for (const { path, h1 } of PAGES) {
     test("discloses the fictional business and links back to the studio", async ({ page }) => {
       await page.goto(path);
       const strip = page.getByTestId("concept-label");
-      await expect(strip).toContainText("Fictional business — a concept site by OFF/SHIFT Studio");
+      await expect(strip).toContainText("Fictional business: a concept site by OFF/SHIFT Studio");
       const back = strip.getByRole("link", { name: "Back to the concept" });
       await expect(back).toBeVisible();
       await expect(back).toHaveAttribute("href", CONCEPT_URL);
@@ -139,3 +142,29 @@ test("hero headline and today's bake are present", async ({ page }) => {
   await expect(page.getByRole("button", { name: /Add to order/ }).first()).toBeVisible();
 });
 
+
+// SHA-256 of public/brand/offshift-wordmark-dark.svg in sdoherty105-rgb/offshift-studio, copied unaltered.
+const CANONICAL_WORDMARK_SHA256 = "0cca7e7a612d12dcff0e62dce083ce3ab101cdc75cec32a02bdb075e7594dc1d";
+
+for (const path of ["/", "/menu"]) {
+  test(`footer credit on ${path} links to OFF/SHIFT and uses the canonical wordmark`, async ({ page, request }) => {
+    await page.goto(path);
+    const credit = page.locator("footer [data-footer-credit]");
+    await expect(credit).toContainText("Designed by");
+    const link = credit.getByRole("link", { name: "OFF/SHIFT Studio" });
+    await expect(link).toHaveAttribute("href", "https://offshiftstudio.com.au");
+    await expect(link).toHaveAttribute("rel", /noopener/);
+    const img = link.locator("img");
+    await expect(img).toHaveAttribute("src", "/brand/offshift-wordmark-dark.svg");
+    await expect(img).toHaveAttribute("alt", "OFF/SHIFT Studio");
+    const width = await img.evaluate((el) => el.getBoundingClientRect().width);
+    expect(width).toBeGreaterThanOrEqual(72);
+    expect(width).toBeLessThanOrEqual(96);
+
+    const onDisk = readFileSync(join(process.cwd(), "public/brand/offshift-wordmark-dark.svg"));
+    expect(createHash("sha256").update(onDisk).digest("hex")).toBe(CANONICAL_WORDMARK_SHA256);
+    const served = await request.get("/brand/offshift-wordmark-dark.svg");
+    expect(served.status()).toBe(200);
+    expect(createHash("sha256").update(await served.body()).digest("hex")).toBe(CANONICAL_WORDMARK_SHA256);
+  });
+}

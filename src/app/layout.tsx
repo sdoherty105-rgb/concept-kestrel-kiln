@@ -10,7 +10,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://kestrel-kiln.offshiftstudio.com.au"),
   title: {
-    default: "Kestrel & Kiln — one bake at a time, Wattlebrook (concept)",
+    default: "Kestrel & Kiln: one bake at a time, Wattlebrook (concept)",
     template: "%s | Kestrel & Kiln (concept)",
   },
   description: SITE.description,
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     googleBot: { index: false, follow: false, noimageindex: true },
   },
   openGraph: {
-    title: "Kestrel & Kiln — an OFF/SHIFT concept",
+    title: "Kestrel & Kiln, an OFF/SHIFT concept",
     description: SITE.description,
     type: "website",
     locale: "en_AU",
