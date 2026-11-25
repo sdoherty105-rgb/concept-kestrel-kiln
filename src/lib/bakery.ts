@@ -3,10 +3,10 @@ export const SITE = {
   slug: "kestrel-kiln",
   conceptUrl: "https://offshiftstudio.com.au/concepts/kestrel-kiln",
   studioUrl: "https://offshiftstudio.com.au",
-  conceptLabel: "An OFF/SHIFT concept — fictional demonstration",
+  conceptLabel: "An OFF/SHIFT concept: fictional demonstration",
   /** The studio enquiry form, tagged with this concept. */
   enquiryUrl: "https://offshiftstudio.com.au/?concept=kestrel-kiln#contact",
-  disclosure: "Fictional business — a concept site by OFF/SHIFT Studio",
+  disclosure: "Fictional business: a concept site by OFF/SHIFT Studio",
   description:
     "Kestrel & Kiln is a fictional artisan bakery and cafe in Wattlebrook, Perth: slow-fermented sourdough, laminated pastry and a daily bake schedule. A concept website by OFF/SHIFT Studio.",
 };
@@ -79,7 +79,7 @@ export const PRODUCTS: Product[] = [
     slot: 0,
     signature: true,
     spec: { flour: "Stone-milled wheat", hydration: "78%", ferment: "18 h" },
-    blurb: "Blistered crust, open crumb, a gentle tang.",
+    blurb: "A blistered crust over an open, mildly tangy crumb.",
     detail:
       "Our house loaf. Stone-milled wheat, a long cold ferment and a hard bake in the kiln until the crust sings.",
   },
@@ -92,7 +92,7 @@ export const PRODUCTS: Product[] = [
     slot: 0,
     signature: true,
     spec: { flour: "Wholegrain rye", hydration: "85%", ferment: "16 h" },
-    blurb: "Dense, dark and deeply savoury.",
+    blurb: "A dense, dark loaf with a savoury rye bite.",
     detail:
       "Wholegrain rye with toasted caraway. Slice it thin, keep it a day, and it only gets better with salted butter.",
   },
@@ -129,7 +129,7 @@ export const PRODUCTS: Product[] = [
     price: 1300,
     slot: 6,
     spec: { flour: "Wheat and olive oil", hydration: "80%", ferment: "20 h" },
-    blurb: "Olive oil, dimples and flaky salt.",
+    blurb: "Olive oil pooled in the dimples, flaky salt on top.",
     detail:
       "A high, springy focaccia baked in the midday run, with plenty of oil pooled in every dimple.",
   },
@@ -144,7 +144,7 @@ export const PRODUCTS: Product[] = [
     spec: { flour: "Wheat, cultured butter", hydration: "52%", ferment: "72 h" },
     blurb: "Shatter-crisp outside, honeycombed within.",
     detail:
-      "Three days of folding, cold butter and patience. Best eaten within the hour, ideally while still warm.",
+      "Three days of folding with cold butter. Best eaten within the hour, ideally while still warm.",
   },
   {
     id: "almond-croissant",
@@ -167,7 +167,7 @@ export const PRODUCTS: Product[] = [
     slot: 2,
     signature: true,
     spec: { flour: "Wheat, salted butter", hydration: "55%", ferment: "24 h" },
-    blurb: "Caramelised, salty, impossibly buttery.",
+    blurb: "Caramelised edges and a salted butter centre.",
     detail:
       "Laminated dough folded with sugar and baked in a muffin ring until the edges turn deep amber.",
   },
@@ -179,7 +179,7 @@ export const PRODUCTS: Product[] = [
     price: 650,
     slot: 2,
     spec: { flour: "Wheat and cardamom", hydration: "64%", ferment: "12 h" },
-    blurb: "Knotted, spiced and sticky.",
+    blurb: "A knotted bun with cardamom and a sticky glaze.",
     detail:
       "Freshly ground cardamom, soft brioche-style dough, and a glaze of crust-gold syrup.",
   },

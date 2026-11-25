@@ -13,13 +13,26 @@ export function Footer() {
           Want a website like this?
         </a>
         <a href={SITE.conceptUrl}>Back to the concept</a>
-        <a href={SITE.studioUrl}>OFF/SHIFT Studio</a>
       </p>
       <p>
         <Link href="/menu">Price list</Link>
         <a href={`tel:${CAFE.phoneHref}`}>{CAFE.phone}</a>
         <span>{CAFE.email}</span>
       </p>
+      <div className="footer-credit" data-footer-credit>
+        <span>Designed by</span>
+        <a href={SITE.studioUrl} rel="noopener">
+          <img
+            src="/brand/offshift-wordmark-dark.svg"
+            alt="OFF/SHIFT Studio"
+            width={88}
+            height={24}
+            loading="eager"
+            fetchPriority="low"
+            decoding="async"
+          />
+        </a>
+      </div>
     </footer>
   );
 }

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 const CAFE_MENU = [
-  { name: "Flat white", sub: "Single-origin espresso, silky milk", price: "$4.80" },
+  { name: "Flat white", sub: "Single-origin espresso, steamed milk", price: "$4.80" },
   { name: "Long black", sub: "Double shot over hot water", price: "$4.50" },
   { name: "Batch brew", sub: "Filter coffee, refills while you linger", price: "$4.20" },
   { name: "Spiced hot chocolate", sub: "Dark chocolate, cardamom, steamed milk", price: "$5.80" },
