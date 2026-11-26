@@ -24,16 +24,20 @@ for (const { path, h1 } of PAGES) {
       await expect(page.locator("html")).toHaveAttribute("lang", "en-AU");
     });
 
-    test("discloses the fictional business and links back to the studio", async ({ page }) => {
+    test("discloses the fictional business and links back to the studio", async ({ page }, testInfo) => {
       await page.goto(path);
       const strip = page.getByTestId("concept-label");
-      await expect(strip).toContainText("Fictional business: a concept site by OFF/SHIFT Studio");
-      const back = strip.getByRole("link", { name: "Back to the concept" });
-      await expect(back).toBeVisible();
-      await expect(back).toHaveAttribute("href", CONCEPT_URL);
-      const cta = strip.getByRole("link", { name: "Want a website like this?" });
+      await expect(strip).toContainText("Fictional concept by OFF/SHIFT Studio");
+      const cta = strip.getByRole("link", { name: /Want a (website|site) like this\?/ });
       await expect(cta).toBeVisible();
       await expect(cta).toHaveAttribute("href", ENQUIRY_URL);
+      if (testInfo.project.name === "mobile") {
+        await expect(strip.getByRole("link", { name: "Back to the concept" })).toHaveCount(0);
+      } else {
+        const back = strip.getByRole("link", { name: "Back to the concept" });
+        await expect(back).toBeVisible();
+        await expect(back).toHaveAttribute("href", CONCEPT_URL);
+      }
       const footer = page.locator("footer");
       await expect(footer.getByRole("link", { name: "Want a website like this?" })).toHaveAttribute("href", ENQUIRY_URL);
       await expect(footer.getByRole("link", { name: "Back to the concept" })).toHaveAttribute("href", CONCEPT_URL);

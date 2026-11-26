@@ -30,6 +30,7 @@
 }
 
 :root {
+  --dock-pad: calc(3.25rem + env(safe-area-inset-bottom, 0px));
   --oat: #f2e2c0; /* kraft paper: the page */
   --paper: #fffaee; /* order-ticket paper */
   --sheet: #e8d3a6; /* a darker sheet of the same paper */
@@ -59,7 +60,7 @@
 
 html {
   scroll-padding-top: 5.5rem;
-  scroll-padding-bottom: 4rem;
+  scroll-padding-bottom: var(--dock-pad);
 }
 
 body {
@@ -216,52 +217,98 @@ button:disabled {
   font-size: 1rem;
 }
 
-/* ---------- Concept notice: an awning stripe over a paper strip ---------- */
+/* ---------- Concept notice: a slim flour-paper strip ---------- */
 
 .concept-bar {
-  position: relative;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
-  gap: 0 1.5rem;
-  padding: 0.9rem 1.25rem 0.35rem;
+  gap: 0.75rem;
+  min-height: 3rem;
+  padding: 0.35rem 1rem;
+  box-shadow: inset 0 -2px 0 rgb(138 63 20 / 0.1);
   background: var(--paper);
-  font-size: 0.9375rem;
-  line-height: 1.4;
-}
-
-.concept-bar::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 0.5rem;
-  background: repeating-linear-gradient(90deg, var(--ember) 0 1.75rem, var(--paper) 1.75rem 3.5rem);
+  font-size: 0.8125rem;
+  line-height: 1.35;
 }
 
 .concept-note {
-  padding-block: 0.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+  min-width: 0;
+  margin: 0;
+  font-weight: 600;
+}
+
+.concept-disclosure {
+  flex: 0 1 auto;
+}
+
+.concept-inline-cta {
+  flex: 0 0 auto;
   font-weight: 600;
 }
 
 .concept-links {
-  display: flex;
+  display: none;
   flex-wrap: wrap;
-  gap: 0 1.5rem;
+  gap: 0 1.25rem;
+  margin: 0;
 }
 
 .concept-bar a {
   display: inline-flex;
   align-items: center;
-  min-height: 40px;
-  color: var(--ember);
+  min-height: 44px;
+  color: var(--ash);
   font-weight: 600;
+  text-decoration: none;
 }
 
 .concept-bar a:hover {
+  color: var(--ember);
+}
+
+.concept-bar .concept-cta,
+.concept-bar .concept-cta-wide {
+  color: var(--ember);
+  text-decoration: underline;
+  text-decoration-color: rgb(155 52 18 / 0.35);
+  text-underline-offset: 0.15em;
+}
+
+.concept-bar .concept-cta:hover,
+.concept-bar .concept-cta-wide:hover {
   color: var(--crust);
+  text-decoration-color: var(--crust);
+}
+
+.concept-cta-wide {
+  display: none;
+}
+
+@media (min-width: 56.25rem) {
+  .concept-bar {
+    min-height: auto;
+    padding: 0.55rem 1.25rem;
+    font-size: 0.875rem;
+  }
+
+  .concept-inline-cta {
+    display: none;
+  }
+
+  .concept-links {
+    display: flex;
+    flex: none;
+  }
+
+  .concept-cta-wide {
+    display: inline-flex;
+  }
 }
 
 /* ---------- Header: the shop sign ---------- */
@@ -385,6 +432,13 @@ button:disabled {
 .plate-index a {
   color: var(--ember);
   min-height: 24px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.plate-index a:hover {
+  text-decoration: underline;
+  text-decoration-color: rgb(155 52 18 / 0.45);
 }
 
 .plate-recipe {
@@ -408,6 +462,29 @@ button:disabled {
 .demo-line {
   font-size: 0.9375rem;
   color: var(--ash);
+}
+
+@media (max-width: 56.1875rem) {
+  .plate-first {
+    gap: 1rem;
+    padding-block: 1.1rem 2rem;
+  }
+
+  .plate-first .plate-photo {
+    order: 1;
+    width: min(74%, 13.5rem);
+    padding: 0.45rem 0.45rem 1rem;
+    transform: rotate(-0.8deg);
+  }
+
+  .plate-first .plate-photo img {
+    aspect-ratio: 5 / 4;
+    max-height: 10.5rem;
+  }
+
+  .plate-first .plate-copy {
+    padding: 1.1rem 1.15rem 1.35rem;
+  }
 }
 
 @media (min-width: 56.25rem) {
@@ -1161,6 +1238,7 @@ textarea.input {
   z-index: 40;
   display: flex;
   min-height: 52px;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
   background: var(--ember);
 }
 
@@ -1276,6 +1354,14 @@ textarea.input {
 }
 
 @media (max-width: 56.1875rem) {
+  body {
+    padding-bottom: var(--dock-pad);
+  }
+
+  .menu-sheet {
+    margin-bottom: calc(2.5rem + var(--dock-pad));
+  }
+
   .site-header nav .nav-wide {
     display: none;
   }

@@ -6,7 +6,7 @@ export const SITE = {
   conceptLabel: "An OFF/SHIFT concept: fictional demonstration",
   /** The studio enquiry form, tagged with this concept. */
   enquiryUrl: "https://offshiftstudio.com.au/?concept=kestrel-kiln#contact",
-  disclosure: "Fictional business: a concept site by OFF/SHIFT Studio",
+  disclosure: "Fictional concept by OFF/SHIFT Studio",
   description:
     "Kestrel & Kiln is a fictional artisan bakery and cafe in Wattlebrook, Perth: slow-fermented sourdough, laminated pastry and a daily bake schedule. A concept website by OFF/SHIFT Studio.",
 };
