@@ -7,7 +7,6 @@ export function ConceptBar() {
       <p className="concept-note">
         <span className="concept-disclosure">{SITE.disclosure}</span>
         <span className="concept-inline-cta">
-          <span aria-hidden="true"> · </span>
           <a href={SITE.enquiryUrl} className="concept-cta" data-testid="concept-cta">
             Want a site like this?
           </a>

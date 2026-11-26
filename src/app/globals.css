@@ -234,22 +234,26 @@ button:disabled {
 }
 
 .concept-note {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0;
   min-width: 0;
   margin: 0;
   font-weight: 600;
 }
 
-.concept-disclosure {
-  flex: 0 1 auto;
+.concept-disclosure,
+.concept-inline-cta {
+  display: inline;
 }
 
-.concept-inline-cta {
-  flex: 0 0 auto;
+.concept-inline-cta .concept-cta::before {
+  content: "·";
+  margin-inline: 0.35em;
+  color: var(--ash);
   font-weight: 600;
+  text-decoration: none;
+}
+
+.concept-inline-cta .concept-cta:hover::before {
+  color: var(--ash);
 }
 
 .concept-links {

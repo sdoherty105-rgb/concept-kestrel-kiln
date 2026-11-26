@@ -28,7 +28,10 @@ for (const { path, h1 } of PAGES) {
       await page.goto(path);
       const strip = page.getByTestId("concept-label");
       await expect(strip).toContainText("Fictional concept by OFF/SHIFT Studio");
-      const cta = strip.getByRole("link", { name: /Want a (website|site) like this\?/ });
+      const cta =
+        testInfo.project.name === "mobile"
+          ? strip.getByTestId("concept-cta")
+          : strip.getByTestId("concept-cta-wide");
       await expect(cta).toBeVisible();
       await expect(cta).toHaveAttribute("href", ENQUIRY_URL);
       if (testInfo.project.name === "mobile") {
